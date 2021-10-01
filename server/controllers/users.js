@@ -23,7 +23,7 @@ exports.register = async (req, res) => {
     res.status(500);
   }
 };
-
+//camel case name
 exports.addjam = async (req, res) => {
   try {
     const { id, jamId } = req.body;
@@ -35,11 +35,12 @@ exports.addjam = async (req, res) => {
     res.status(500);
   }
 };
-
+// not functional no method of removing a jam
 exports.removejam = async (req, res) => {
   try {
     const { id, jamId } = req.body;
     const objJamId = mongoose.Types.ObjectId(jamId);
+    //updated variable is not used
     const updated = await User.findOneAndUpdate(
       { _id: id },
       {

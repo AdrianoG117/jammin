@@ -12,11 +12,11 @@ router.post('/jams', jams.postJam);
 
 router.post('/jams/:id', jams.postMsg);
 
-router.get('/jams/:id', jams.getEvent);
+router.get('/jams/:id', jams.getEvent); //get Events:id
 
 router.post('/addparticipant', jams.addParticipant);
 
-router.post('/removeparticipant', jams.removeParticipant);
+router.post('/removeparticipant', jams.removeParticipant); //change to PUT
 
 //users routes
 
@@ -26,6 +26,6 @@ router.post('/login', users.login);
 
 router.post('/addjam', users.addjam);
 
-router.post('/removejam', users.removejam);
+router.post('/removejam', users.removejam); //should be a DELETE
 
 module.exports = router;

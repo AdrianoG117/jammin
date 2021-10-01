@@ -3,11 +3,13 @@ const Jam = require('../Models/jams');
 exports.getJams = async (req, res) => {
   try {
     const city = req.body.city;
-    const result = await Jam.find({ city });
+    const result = await Jam.find({ city }); //retruns array of jams models
+    //sort array by jams date
     let sortedResult = result.sort(function (a, b) {
       return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
     });
     res.status(200);
+    //return sorted jams array
     res.json(sortedResult);
   } catch (e) {
     res.status(500);

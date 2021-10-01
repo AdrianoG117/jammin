@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Search from '../Search/Search';
 import JamItem from '../JamItem/JamItem';
 import apiService from '../../ApiService';
@@ -23,6 +23,7 @@ const mapContainerStyle = {
 
 function FindJam(props) {
   const jams = props.jams;
+  console.log(jams);
   const setJams = props.setJams;
   const searchVal = props.searchVal;
   const setSearchVal = props.setSearchVal;

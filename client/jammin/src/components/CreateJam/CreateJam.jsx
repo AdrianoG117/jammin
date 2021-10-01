@@ -3,7 +3,7 @@ import Search from '../Search/Search';
 import apiService from '../../ApiService';
 import './createjam.css';
 import { useHistory } from 'react-router-dom';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { useLoadScript } from '@react-google-maps/api';
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -25,7 +25,7 @@ const initialState = {
 
 function CreateJam() {
   const [state, setState] = useState(initialState);
-  //
+  
   const history = useHistory();
 
   const libraries = ['places'];
@@ -38,10 +38,9 @@ function CreateJam() {
   if (loadError) return 'Error loading maps';
   if (!isLoaded) return 'Loading Maps';
 
-  //
+
   function handleChange(e) {
     const { name, value } = e.target;
-    console.log(`${name}, ${value}`);
     setState((previous) => ({
       ...previous,
       [name]: value,
@@ -55,7 +54,8 @@ function CreateJam() {
     setState(initialState);
     history.push(`/jams/${id}`); //path with id
   }
-
+// We can remove this setCity  function/input
+//setLocation is making fetch call that return the city location. data.results[0].formatted_address.
   function setCity(loc) {
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${apiKey}`
@@ -63,6 +63,7 @@ function CreateJam() {
       .then((res) => res.json())
       .then((data) => {
         let coords = data.results[0].geometry.location;
+        console.log(data);
         setState((previous) => ({
           ...previous,
           city: loc,
@@ -72,6 +73,7 @@ function CreateJam() {
   }
 
   function setLocation(loc) {
+    //add city info
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${apiKey}`
     )
@@ -84,7 +86,7 @@ function CreateJam() {
           locCords: coords,
         }));
       })
-      .catch((err) => console.log(err));
+      .catch();
   }
 
   const placeHolders = {
