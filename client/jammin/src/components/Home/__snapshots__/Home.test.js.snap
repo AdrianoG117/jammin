@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component should match the snapshot 1`] = `
+<div
+  class="main"
+>
+  <div
+    class="slogan"
+  >
+    <h1>
+      JAMMIN'
+    </h1>
+    <h2>
+      Music is meant to be shared.
+    </h2>
+  </div>
+  <div
+    class="btn-container"
+  >
+    <button
+      class="home-btn"
+    >
+      CREATE YOUR JAM
+    </button>
+    <button
+      class="home-btn"
+    >
+      FIND A JAM
+    </button>
+  </div>
+</div>
+`;

@@ -1,14 +1,19 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './home.css';
 
-function Home(props) {
-  const setJams = props.setJams;
-  const setHasSearch = props.setHasSearch;
+function Home({setJams,setHasSearch }) {
+  // const setJams = props.setJams;
+  // const setHasSearch = props.setHasSearch;
+  console.log('seJames',setJams)
+  console.log('seHam',setHasSearch)
+  
+  const history = useHistory();
 
   useEffect(() => {
-    setJams([]);
-    setHasSearch(false);
+      setJams([]);
+      setHasSearch(false);
+    
   }, []);
 
   return (
@@ -18,16 +23,11 @@ function Home(props) {
         <h2>Music is meant to be shared.</h2>
       </div>
       <div className="btn-container">
-        <Link to="/createjam">
-          <button className="home-btn">CREATE YOUR JAM</button>
-        </Link>
-        <Link
-          to={{
-            pathname: '/findjam',
-          }}
-        >
-          <button className="home-btn">FIND A JAM</button>
-        </Link>
+        
+          <button className="home-btn" onClick={()=> history.push('/createjam')}>CREATE YOUR JAM</button>
+       
+          <button className="home-btn" onClick={()=> history.push('/findjam')}>FIND A JAM</button>
+        
       </div>
     </div>
   );

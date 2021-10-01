@@ -117,6 +117,7 @@ function App() {
               render={(...props) => (
                 <Dashboard
                   {...props}
+                
                   userData={userData}
                   setUserData={setUserData}
                   isSignedUp={isSignedUp}
