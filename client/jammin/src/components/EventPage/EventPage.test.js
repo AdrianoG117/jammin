@@ -8,7 +8,7 @@ const mockProps = {
   setIsSignedUp: ()=>{},
   
   isEventAdded: (jamid) => {
-    const arr = ["615aa8eb25df7e7d9ed72fbc"];
+    const arr = [{_id:"615aa8eb25df7e7d9ed72fbc"}];
     for (let i = 0; i < arr.length; i++) {
       if (arr[i]._id === jamid) {
         return true;
@@ -31,8 +31,8 @@ describe('EventPage component', ()=> {
   })
   
    test('is EventAdded function should return true or false if the event is added or not added', () => {
-     mockProps.isEventAdded("615aa8eb25df7e7d9ed72fbc").toBeTruthy();
-     mockProps.isEventAdded("").not.toBeTruthy()     
+     expect(mockProps.isEventAdded("615aa8eb25df7e7d9ed72fbc")).toBeTruthy();
+    expect( mockProps.isEventAdded("")).toBeFalsy()     
    })
    
   
@@ -48,11 +48,11 @@ describe('EventPage component', ()=> {
     
     //If user is logged in, then check if user has the event added
     //if true then it should show EVENT ADDED else  show PARTICIPATE
-    if(!mockProps.isSignedUp){
-      if( !mockProps.isEventAdded('615aa8eb25df7e7d9ed72fbc')){
+    if(mockProps.isSignedUp){
+      if(mockProps.isEventAdded('615aa8eb25df7e7d9ed72fbc')){
         screen.getByText(/EVENT ADDED/)   
       }
-      if( mockProps.isEventAdded('615aa8eb25df7e7d9ed72fbc')){
+      if( !mockProps.isEventAdded('')){
         screen.getByText(/PARTICIPATE/)   
       }
       

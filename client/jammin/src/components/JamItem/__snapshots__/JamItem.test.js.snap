@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JamItem component should match the snapshot 1`] = `
+<div>
+  <div
+    class="single-jam"
+  >
+    <div
+      class="jam-info"
+    >
+      <h1>
+        Oct 2nd, 5:12 pm
+      </h1>
+      <h1>
+        Test1
+      </h1>
+      <div
+        class="jam-loc"
+      >
+        <img
+          alt=""
+          src=""
+        />
+        <p>
+          Miami, FL, USA
+        </p>
+      </div>
+    </div>
+    <div
+      class="see-event"
+    >
+      <button>
+        SEE EVENT
+      </button>
+    </div>
+  </div>
+</div>
+`;
