@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Topbar component should match the snapshot 1`] = `
+<div
+  class="nav-container"
+>
+  <div
+    class="home-tag"
+    to="/"
+  >
+    <h2>
+      Home
+    </h2>
+  </div>
+  <div
+    class="menu-tag"
+    to="/createjam"
+  >
+    <li>
+      Create Jam
+    </li>
+  </div>
+  <div
+    class="menu-tag"
+    to="/findjam"
+  >
+    <li>
+      Find Jam
+    </li>
+  </div>
+  <ul
+    class="navbar-right"
+  >
+    <li
+      class="nav-el"
+    >
+      Dashboard
+    </li>
+    <li
+      class="nav-el"
+    >
+      Log Out
+    </li>
+  </ul>
+</div>
+`;
