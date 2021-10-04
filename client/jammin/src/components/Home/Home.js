@@ -3,10 +3,6 @@ import { useHistory } from 'react-router-dom';
 import './home.css';
 
 function Home({setJams,setHasSearch }) {
-  // const setJams = props.setJams;
-  // const setHasSearch = props.setHasSearch;
-  console.log('seJames',setJams)
-  console.log('seHam',setHasSearch)
   
   const history = useHistory();
 

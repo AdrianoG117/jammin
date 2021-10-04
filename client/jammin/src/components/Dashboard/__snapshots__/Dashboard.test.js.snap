@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard component should match the snapshot with array 1`] = `
+<div
+  class="dashboard"
+>
+  <div
+    class="dashboard-container"
+  >
+    <h1>
+      Hi there 
+      ad
+       !
+    </h1>
+    <h2>
+      Check out your upcoming events below: 
+    </h2>
+    <div
+      class="myevents-list"
+    >
+      <div
+        class="jamsitem-container"
+      >
+        <div
+          class="date"
+        >
+          <h2>
+            Oct 22nd
+          </h2>
+        </div>
+        <div
+          class="item-main"
+        >
+          <h1>
+            Test1
+          </h1>
+          <h2>
+            Miami, FL, USA
+          </h2>
+        </div>
+        <div
+          class="button-container"
+        >
+          <div>
+            <button
+              id="see-btn"
+            >
+              See Event
+            </button>
+          </div>
+        </div>
+        <div
+          class="trash-container"
+        >
+          <img
+            alt=""
+            src="trash.png"
+          />
+        </div>
+      </div>
+      <div
+        class="jamsitem-container"
+      >
+        <div
+          class="date"
+        >
+          <h2>
+            Oct 22nd
+          </h2>
+        </div>
+        <div
+          class="item-main"
+        >
+          <h1>
+            Test1
+          </h1>
+          <h2>
+            Miami, FL, USA
+          </h2>
+        </div>
+        <div
+          class="button-container"
+        >
+          <div>
+            <button
+              id="see-btn"
+            >
+              See Event
+            </button>
+          </div>
+        </div>
+        <div
+          class="trash-container"
+        >
+          <img
+            alt=""
+            src="trash.png"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

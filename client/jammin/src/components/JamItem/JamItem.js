@@ -1,10 +1,11 @@
 import React from 'react';
 import './JamItem.css';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
 
 function JamItem({ jam,setHighEvent }) {
+  const history = useHistory();
   return (
     <div
       onMouseEnter={() => {
@@ -23,17 +24,14 @@ function JamItem({ jam,setHighEvent }) {
             <p>{jam.location}</p>
           </div>
         </div>
-        <div className="see-event">
-          <Link
-            to={{
+        <div className="see-event" >
+            <button onClick={()=> history.push({
               pathname: `/jams/${jam._id}`,
               state: {
-                jam: jam,
-              },
-            }}
-          >
-            <button>SEE EVENT</button>
-          </Link>
+                jam:jam
+              }
+            })}>SEE EVENT</button>
+          
         </div>
       </div>
     </div>
