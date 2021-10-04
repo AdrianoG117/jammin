@@ -3,6 +3,7 @@ import './JamItem.css';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 
+
 function JamItem({ jam,setHighEvent }) {
   const history = useHistory();
   return (
