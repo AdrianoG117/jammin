@@ -54,7 +54,7 @@ function CreateJam() {
     setState(initialState);
     history.push(`/jams/${id}`); //path with id
   }
-// We can remove this setCity  function/input
+// We can remove this setCity function/input
 //setLocation is making fetch call that return the city location. data.results[0].formatted_address.
   function setCity(loc) {
     fetch(
@@ -168,7 +168,7 @@ function CreateJam() {
           cols="30"
           rows="10"
         ></textarea>
-        <button class="create-btn">CREATE MY EVENT</button>
+        <button className="create-btn">CREATE MY EVENT</button>
       </form>
     </div>
   );

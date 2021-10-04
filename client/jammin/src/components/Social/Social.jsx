@@ -24,6 +24,7 @@ function Social({ jam, msg, setMsg, initialState, isSignedUp, userData }) {
     setMsg((previous) => ({
       name: userData.firstname,
       message: e.target.value,
+
     }));
   }
 
