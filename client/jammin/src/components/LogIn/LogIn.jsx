@@ -24,10 +24,11 @@ function LogIn({ setUserData, setIsSignedUp }) {
   async function handleSubmit(e) {
     e.preventDefault();
     const user = await apiService.login(state);
+    console.log("USER: ", user)
     setUserData(user);
     setIsSignedUp(true);
     setState(initialState);
-    history.push('/dashboard');
+    // history.push('/dashboard');
   }
 
   return (

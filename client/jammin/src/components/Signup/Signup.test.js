@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Signup from './SignUp';
 import userEvent from '@testing-library/user-event'
 import apiService from '../../ApiService.js';
