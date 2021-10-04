@@ -1,11 +1,13 @@
 import React from 'react';
 import './myjamsitem.css';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 import Trash from '../../images/trash.png';
 import apiService from '../../ApiService';
+import { useHistory } from 'react-router-dom';
+
 
 function MyJamsItem({ eventData, userData, setUserData }) {
+  const history = useHistory();
   async function removeFromEvents(userid, jamid) {
     const body = {
       id: userid,
@@ -36,9 +38,9 @@ function MyJamsItem({ eventData, userData, setUserData }) {
         <h2>{eventData.city}</h2>
       </div>
       <div className="button-container">
-        <Link to={`/jams/${eventData._id}`}>
+        <div onClick={() => history.push(`/jams/${eventData._id}`)}>
           <button id="see-btn">See Event</button>
-        </Link>
+        </div>
       </div>
       <div className="trash-container">
         <img

@@ -3,6 +3,7 @@ import './JamItem.css';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 
+
 function JamItem({ jam,setHighEvent }) {
   return (
     <div
