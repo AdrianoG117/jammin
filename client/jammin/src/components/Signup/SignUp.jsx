@@ -32,9 +32,9 @@ function SignUp({ setUserData, setIsSignedUp }) {
     const user = await apiService.register(state);
     console.log("USER: ", user);
     setUserData(user);
-    // setIsSignedUp(true);
-    // setState(initialState);
-    // history.push('/dashboard');
+    setIsSignedUp(true);
+    setState(initialState);
+    history.push('/dashboard');
   }
 
   return (

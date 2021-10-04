@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Signup from './SignUp';
 import userEvent from '@testing-library/user-event'
+import apiService from '../../ApiService.js';
 
 const mockProps = {
     firstname: 'front test',
@@ -34,13 +35,11 @@ describe('Signup component', ()=> {
   })
 
 //    submit function creates the object for the db
-  test('Submit function creates object user', async () => {
-    const mockFunc = jest.fn()
+  test('Submit function creates object user when all fields filled in', async () => {
+    
     const setUserData = jest.fn();
-    // const handleSubmit = jest.fn();
-    jest.mock('../../ApiService.js', () => ({
-        register: mockFunc
-    }))
+    const spy = jest.spyOn(apiService, "register");
+    
 
     render (<Signup 
                   setUserData={setUserData}
@@ -59,40 +58,10 @@ describe('Signup component', ()=> {
     userEvent.type(lastNameInput, 'last test');
     userEvent.type(emailInput, 'email test');
     userEvent.type(passwordInput, 'password test');
-    await userEvent.click(submitBtn);
+    userEvent.click(submitBtn);
 
-    // expect(setUserData).toHaveBeenCalledWith(mockProps);
-    // expect(handleSubmit).toHaveBeenCalledTimes(1);
-    expect(mockFunc).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalledWith(mockProps);
 
     })
-
-
-    
-
-
-
-
-
-
-
-
-//   // submit button will work only when input fields are full
-//   test('Submit button will work only when input fields are full', () => {
-//     render (<Signup/>);
-
-//     const firstNameInput = screen.getByPlaceholderText(/First name/);
-//     const lastNameInput = screen.getByPlaceholderText(/Last name/);
-//     const emailInput = screen.getByPlaceholderText(/Email/);
-//     const passwordInput = screen.getByPlaceholderText(/Password/);
-//     const submitBtn = screen.getByRole('button', { name: 'JOIN NOW' });
-
-//     userEvent.type(firstNameInput, 'Example firstname');
-//     userEvent.type(lastNameInput, 'Example lastname');
-//     userEvent.type(emailInput, 'example@email.com');
-//     userEvent.type(passwordInput, 'Example password');
-//     userEvent.click(submitBtn);
-
-//     })
 
 })
