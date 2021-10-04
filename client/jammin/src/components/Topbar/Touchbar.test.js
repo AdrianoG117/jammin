@@ -14,7 +14,7 @@ describe('Topbar component', ()=> {
   test('Should render the headings', () => {
     render (<Topbar isSignedUp={[]}
                   setUserData={()=>{}}
-                  setIsSignedUpw={()=>{}} />);
+                  setIsSignedUp={()=>{}} />);
     //title
     screen.getByText(/Home/)
     screen.getByText(/Create Jam/)
@@ -24,7 +24,7 @@ describe('Topbar component', ()=> {
   test('Should render Dashboard and Log Out if signed up', () => {
     render (<Topbar isSignedUp={true}
         setUserData={()=>{}}
-        setIsSignedUpw={()=>{}} />);
+        setIsSignedUp={()=>{}} />);
     //title
     screen.getByText(/Dashboard/)
     screen.getByText(/Log Out/)
@@ -33,7 +33,7 @@ describe('Topbar component', ()=> {
   test('Should render Login and Sign up if not signed up', () => {
     render (<Topbar isSignedUp={false}
         setUserData={()=>{}}
-        setIsSignedUpw={()=>{}} />);
+        setIsSignedUp={()=>{}} />);
     //title
     screen.getByText(/Login/)
     screen.getByText(/Sign up/)
