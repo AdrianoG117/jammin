@@ -49,7 +49,7 @@ function EventPage(props) {
   if (!isLoaded) return 'Loading Maps';
 
   const center = data?.locCords;
-
+  // on click used to increment the participants going(number of participants)
   async function addToEvents(userid, jamid) {
     const body = {
       id: userid,
@@ -75,6 +75,7 @@ function EventPage(props) {
 
   function isEventAdded(jamid) {
     const arr = userData.comingEvents;
+    console.log('arrrr',arr)
     for (let i = 0; i < arr.length; i++) {
       if (arr[i]._id === jamid) {
         return true;
@@ -160,3 +161,4 @@ function EventPage(props) {
 }
 
 export default EventPage;
+
