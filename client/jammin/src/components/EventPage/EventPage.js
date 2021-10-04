@@ -75,7 +75,7 @@ function EventPage(props) {
 
   function isEventAdded(jamid) {
     const arr = userData.comingEvents;
-    console.log('arrrr',arr)
+    console.log('arrrr', arr)
     for (let i = 0; i < arr.length; i++) {
       if (arr[i]._id === jamid) {
         return true;
