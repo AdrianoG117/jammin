@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FunctionComponent } from 'react';
 import './eventpage.css';
 import { useHistory } from 'react-router-dom';
-import Social from '../Social/Social.jsx';
+import Social from '../Social/Social';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import apiService from '../../ApiService';
 import Pin from '../../images/placeholder.png';
@@ -15,7 +15,7 @@ const initialState = {
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-function EventPage(props) {
+function EventPage (props): FunctionComponent {
   const pathname = window.location.pathname;
   const urlID = pathname.slice(6);
   const [data, setData] = useState(props.location?.state?.jam);

@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, FunctionComponent } from 'react';
 import './social.css';
 import apiService from '../../ApiService';
 
-function Social({ jam, msg, setMsg, initialState, isSignedUp, userData }) {
+function Social({ jam, msg, setMsg, initialState, isSignedUp, userData }): FunctionComponent{
   const messagesEndRef = useRef(null);
   const dummyDiv = useRef();
 
