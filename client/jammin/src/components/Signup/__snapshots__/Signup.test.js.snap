@@ -44,6 +44,7 @@ exports[`Signup component should match the snapshot 1`] = `
     />
     <button
       class="signup-btn"
+      type="submit"
     >
       JOIN NOW
     </button>

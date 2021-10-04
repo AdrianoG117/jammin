@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import apiService from '../../ApiService';
+import apiService from '../../ApiService.js';
 import './signup.css';
 import { useHistory } from 'react-router-dom';
 
@@ -17,6 +17,7 @@ function SignUp({ setUserData, setIsSignedUp }) {
 
   const history = useHistory();
 
+  // adds name property based on it's relevant property/key name, then adds the corresponding value
   function handleChange(e) {
     const { name, value } = e.target;
     setState((previous) => ({
@@ -25,13 +26,15 @@ function SignUp({ setUserData, setIsSignedUp }) {
     }));
   }
 
+  // on submit adds the inital state object to the db
   async function handleSubmit(e) {
     e.preventDefault();
     const user = await apiService.register(state);
+    console.log("USER: ", user);
     setUserData(user);
-    setIsSignedUp(true);
-    setState(initialState);
-    history.push('/dashboard');
+    // setIsSignedUp(true);
+    // setState(initialState);
+    // history.push('/dashboard');
   }
 
   return (
@@ -74,7 +77,7 @@ function SignUp({ setUserData, setIsSignedUp }) {
           value={state.password}
           onChange={handleChange}
         />
-        <button className="signup-btn">JOIN NOW</button>
+        <button type="submit" className="signup-btn">JOIN NOW</button>
       </form>
     </div>
   );
