@@ -20,6 +20,7 @@ function Dashboard({ userData, setUserData }) {
             {userData.comingEvents.length
               ? userData.comingEvents.map((event) => (
                   <MyJamsItem
+                    key={event._id}
                     eventData={event}
                     userData={userData}
                     setUserData={setUserData}
@@ -31,10 +32,7 @@ function Dashboard({ userData, setUserData }) {
       ) : (
         <div className="dashboard-container">
           <h1>Hi {userData.firstname}</h1>
-          <h2>
-            You have no jams added yet, go to the Find Jam section to find events
-            around you
-          </h2>
+          <h2>You have no jams added yet, go to the Find Jam section to find events around you</h2>
         </div>
       )}
     </div>

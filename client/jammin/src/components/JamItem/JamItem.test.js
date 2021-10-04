@@ -23,7 +23,7 @@ const mockProps = {
 }
 
 describe('JamItem component', () => {
-  test.only('should match the snapshot', () => {
+  test('should match the snapshot', () => {
     const {container} = render(<JamItem
       jam={mockProps.jam}
       setHighEvent={mockProps.setHighEvent}
