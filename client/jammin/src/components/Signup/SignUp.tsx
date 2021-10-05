@@ -1,10 +1,5 @@
-<<<<<<< HEAD:client/jammin/src/components/Signup/SignUp.tsx
 import React, { useState, SetStateAction } from "react";
 import apiService from "../../apiService/ApiService";
-=======
-import React, { useState } from "react";
-import apiService from "../../ApiService.js";
->>>>>>> d711301ba4919275d84e47701463ad8dadaceea3:client/jammin/src/components/Signup/SignUp.jsx
 import "./signup.css";
 import { useHistory } from "react-router-dom";
 import { User } from "../../apiService/APIResponseTypes";
