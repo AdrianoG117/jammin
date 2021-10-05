@@ -1,5 +1,5 @@
-import {render, screen} from '@testing-library/react';
-import Dashboard from './Dashboard';
+import {render, screen} from "@testing-library/react";
+import Dashboard from "./Dashboard";
 
 
 const mockProps = {
@@ -44,24 +44,24 @@ const mockProps = {
     lastname: "ad",
     password: "1234",
   }
-}
+};
 
 const emptyUser = {
   userData : {
-    firstname: 'ad',
+    firstname: "ad",
     comingEvents: [],
   }
-}
+};
 
-describe('Dashboard component', ()=> {
+describe("Dashboard component", ()=> {
   
-  test('should match the snapshot with array', () => {
+  test("should match the snapshot with array", () => {
     const {container} = render(<Dashboard
                   userData={mockProps.userData}
                   setUserData={()=>{}}
                   setIsSignedUp={()=>{}} />);
     expect(container.firstChild).toMatchSnapshot();
-  })
+  });
   
   
 });
@@ -73,15 +73,15 @@ describe('Dashboard component', ()=> {
                   userData={emptyUser.userData}
                   setUserData={()=>{}}
                   setIsSignedUp={()=>{}} />);
-    })
+    });
       
-    test('should display correct values when arr empty', () => {
+    test("should display correct values when arr empty", () => {
       if(emptyUser.userData.comingEvents.length < 1){
         //title
-        screen.getByText(`Hi ${emptyUser.userData.firstname}`)
-        screen.getByText(`You have no jams added yet, go to the Find Jam section to find events around you`)
+        screen.getByText(`Hi ${emptyUser.userData.firstname}`);
+        screen.getByText("You have no jams added yet, go to the Find Jam section to find events around you");
       }
-     })  
+     });  
 
-  })
+  });
 

@@ -1,7 +1,7 @@
-import { render, screen } from '@testing-library/react';
-import CreateJam from './CreateJam';
-import apiService from '../../ApiService';
-import { userEvent } from '@testing-library/user-event';
+import { render, screen } from "@testing-library/react";
+import CreateJam from "./CreateJam";
+import apiService from "../../ApiService";
+import { userEvent } from "@testing-library/user-event";
 
 
 jest.mock(apiService, () => ( {
@@ -20,13 +20,13 @@ const setStateObj = {
   description: "",
   city: "",
   location: "",
-}
+};
 
 
-test.only('CreateJam component', async ()=> {
+test.only("CreateJam component", async ()=> {
   const setState = jest.fn();
-  const storage = {setItem: jest.fn()}
-  const submitInfo = {title: "Rainy day"}
+  const storage = {setItem: jest.fn()};
+  const submitInfo = {title: "Rainy day"};
 
   render(<CreateJam
     setState = {setState}
@@ -59,4 +59,4 @@ test.only('CreateJam component', async ()=> {
   expect(setState).toHaveBeenCalledWith(setStateObj.city);
   expect(storage.setItem).toHaveBeenCalledWith("location", submitInfo.location);
   expect(setState).toHaveBeenCalledWith(setStateObj.location);
-})
+});

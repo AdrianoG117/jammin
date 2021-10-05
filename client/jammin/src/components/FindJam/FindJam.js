@@ -1,24 +1,24 @@
-import React, { useState } from 'react';
-import Search from '../Search/Search';
-import JamItem from '../JamItem/JamItem';
-import apiService from '../../ApiService';
-import logo from '../../images/marker.png';
-import './findjam.css';
+import React, { useState } from "react";
+import Search from "../Search/Search";
+import JamItem from "../JamItem/JamItem";
+import apiService from "../../ApiService";
+import logo from "../../images/marker.png";
+import "./findjam.css";
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
-} from '@react-google-maps/api';
-import { Link } from 'react-router-dom';
+} from "@react-google-maps/api";
+import { Link } from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-const libraries = ['places'];
+const libraries = ["places"];
 const mapContainerStyle = {
-  width: '100%',
-  height: '60vh',
-  borderRadius: '10px',
+  width: "100%",
+  height: "60vh",
+  borderRadius: "10px",
 };
 
 function FindJam(props) {
@@ -41,7 +41,7 @@ function FindJam(props) {
   const [idRoute, setIdRoute] = useState(null);
   const [highEvent, setHighEvent] = useState(null);
 
-  const findPlaceholder = 'Enter your city';
+  const findPlaceholder = "Enter your city";
 
   function searchJams(input) {
     setSearchVal(input);
@@ -90,8 +90,8 @@ function FindJam(props) {
     libraries,
   });
 
-  if (loadError) return 'Error loading maps';
-  if (!isLoaded) return 'Loading Maps';
+  if (loadError) return "Error loading maps";
+  if (!isLoaded) return "Loading Maps";
 
   return (
     <div className="findJam-main">

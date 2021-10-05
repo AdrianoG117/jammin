@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import apiService from '../../ApiService';
-import './login.css';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import apiService from "../../ApiService";
+import "./login.css";
+import { useHistory } from "react-router-dom";
 
 const initialState = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
 };
 
 function LogIn({ setUserData, setIsSignedUp }) {

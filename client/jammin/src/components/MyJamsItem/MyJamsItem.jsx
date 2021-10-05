@@ -1,9 +1,9 @@
-import React from 'react';
-import './myjamsitem.css';
-import moment from 'moment';
-import Trash from '../../images/trash.png';
-import apiService from '../../ApiService';
-import { useHistory } from 'react-router-dom';
+import React from "react";
+import "./myjamsitem.css";
+import moment from "moment";
+import Trash from "../../images/trash.png";
+import apiService from "../../ApiService";
+import { useHistory } from "react-router-dom";
 
 
 function MyJamsItem({ eventData, userData, setUserData }) {
@@ -31,7 +31,7 @@ function MyJamsItem({ eventData, userData, setUserData }) {
   return (
     <div className="jamsitem-container">
       <div className="date">
-        <h2>{moment(eventData.date).format('MMM Do')}</h2>
+        <h2>{moment(eventData.date).format("MMM Do")}</h2>
       </div>
       <div className="item-main">
         <h1>{eventData.title}</h1>

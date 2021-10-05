@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import MyJamsItem from '../MyJamsItem/MyJamsItem';
-import './dashboard.css';
+import React, { useEffect } from "react";
+import MyJamsItem from "../MyJamsItem/MyJamsItem";
+import "./dashboard.css";
 
 function Dashboard({ userData, setUserData }) {
   useEffect(() => {

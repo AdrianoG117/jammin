@@ -1,5 +1,5 @@
-import {render, screen} from '@testing-library/react';
-import EventPage from './EventPage';
+import {render, screen} from "@testing-library/react";
+import EventPage from "./EventPage";
 
 const mockProps = {
   userData: null,
@@ -16,11 +16,11 @@ const mockProps = {
     }
     return false;
   }
-}
+};
 
-describe('EventPage component', ()=> {
+describe("EventPage component", ()=> {
   
-  test('should match the snapshot', () => {
+  test("should match the snapshot", () => {
     const {container} = render(<EventPage  
      userData={mockProps.userData}
                   setUserData={mockProps.setUserData}
@@ -28,15 +28,15 @@ describe('EventPage component', ()=> {
                   setIsSignedUp={mockProps.setIsSignedUp}
     />);
     expect(container.firstChild).toMatchSnapshot();
-  })
+  });
   
-   test('is EventAdded function should return true or false if the event is added or not added', () => {
+   test("is EventAdded function should return true or false if the event is added or not added", () => {
      expect(mockProps.isEventAdded("615aa8eb25df7e7d9ed72fbc")).toBeTruthy();
-    expect( mockProps.isEventAdded("")).toBeFalsy()     
-   })
+    expect( mockProps.isEventAdded("")).toBeFalsy();     
+   });
    
   
-  test('Should render the headings when user is signed up', () => {
+  test("Should render the headings when user is signed up", () => {
     render (<EventPage  
      userData={mockProps.userData}
                   setUserData={mockProps.setUserData}
@@ -49,19 +49,19 @@ describe('EventPage component', ()=> {
     //If user is logged in, then check if user has the event added
     //if true then it should show EVENT ADDED else  show PARTICIPATE
     if(mockProps.isSignedUp){
-      if(mockProps.isEventAdded('615aa8eb25df7e7d9ed72fbc')){
-        screen.getByText(/EVENT ADDED/)   
+      if(mockProps.isEventAdded("615aa8eb25df7e7d9ed72fbc")){
+        screen.getByText(/EVENT ADDED/);   
       }
-      if( !mockProps.isEventAdded('')){
-        screen.getByText(/PARTICIPATE/)   
+      if( !mockProps.isEventAdded("")){
+        screen.getByText(/PARTICIPATE/);   
       }
       
     }
-  })
+  });
   
   
   
-  test('Should render the headings when user is NOT signed up', () => {
+  test("Should render the headings when user is NOT signed up", () => {
     render (<EventPage  
      userData={mockProps.userData}
                   setUserData={mockProps.setUserData}
@@ -70,9 +70,9 @@ describe('EventPage component', ()=> {
     />);
     
     if(mockProps.isSignedUp){
-     screen.getByText(/Login to participate/)   
+     screen.getByText(/Login to participate/);   
       
     }
-  })
+  });
 
-})
+});

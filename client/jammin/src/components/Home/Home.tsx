@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
-import './home.css';
+import React, { useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import "./home.css";
 
 function Home({setJams,setHasSearch }) {
   
@@ -20,9 +20,9 @@ function Home({setJams,setHasSearch }) {
       </div>
       <div className="btn-container">
         
-          <button className="home-btn" onClick={()=> history.push('/createjam')}>CREATE YOUR JAM</button>
+          <button className="home-btn" onClick={()=> history.push("/createjam")}>CREATE YOUR JAM</button>
        
-          <button className="home-btn" onClick={()=> history.push('/findjam')}>FIND A JAM</button>
+          <button className="home-btn" onClick={()=> history.push("/findjam")}>FIND A JAM</button>
         
       </div>
     </div>
