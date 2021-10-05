@@ -1,16 +1,16 @@
-import React, { useState, useEffect, FunctionComponent } from 'react';
-import './eventpage.css';
-import { useHistory } from 'react-router-dom';
-import Social from '../Social/Social';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
-import apiService from '../../ApiService';
-import Pin from '../../images/placeholder.png';
-import Voice from '../../images/voice.png';
-import moment from 'moment';
+import React, { useState, useEffect, FunctionComponent } from "react";
+import "./eventpage.css";
+import { useHistory } from "react-router-dom";
+import Social from "../Social/Social";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import apiService from "../../ApiService";
+import Pin from "../../images/placeholder.png";
+import Voice from "../../images/voice.png";
+import moment from "moment";
 
 const initialState = {
-  name: '',
-  message: '',
+  name: "",
+  message: "",
 };
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
@@ -32,12 +32,12 @@ function EventPage (props): FunctionComponent {
     });
   }, [msg]);
 
-  const libraries = ['places'];
+  const libraries = ["places"];
   const mapContainerStyle = {
-    width: '100%',
-    height: '96%',
-    borderRadius: '10px',
-    marginBottom: '10px',
+    width: "100%",
+    height: "96%",
+    borderRadius: "10px",
+    marginBottom: "10px",
   };
 
   const { isLoaded, loadError } = useLoadScript({
@@ -45,8 +45,8 @@ function EventPage (props): FunctionComponent {
     libraries,
   });
 
-  if (loadError) return 'Error loading maps';
-  if (!isLoaded) return 'Loading Maps';
+  if (loadError) return "Error loading maps";
+  if (!isLoaded) return "Loading Maps";
 
   const center = data?.locCords;
   // on click used to increment the participants going(number of participants)
@@ -75,7 +75,7 @@ function EventPage (props): FunctionComponent {
 
   function isEventAdded(jamid) {
     const arr = userData.comingEvents;
-    console.log('arrrr', arr)
+    console.log("arrrr", arr);
     for (let i = 0; i < arr.length; i++) {
       if (arr[i]._id === jamid) {
         return true;
@@ -90,7 +90,7 @@ function EventPage (props): FunctionComponent {
         <>
           <div className="event-data">
             <div className="data-item" id="date">
-              <h2>{moment(data.date).format('MMM Do, h:mm a')}</h2>
+              <h2>{moment(data.date).format("MMM Do, h:mm a")}</h2>
               {isSignedUp ? (
                 isEventAdded(data._id) ? (
                   <button className="event-added-btn">EVENT ADDED</button>
@@ -106,7 +106,7 @@ function EventPage (props): FunctionComponent {
                 <button
                   className="add-btn"
                   onClick={() => {
-                    history.push('/login');
+                    history.push("/login");
                   }}
                 >
                   Login to participate

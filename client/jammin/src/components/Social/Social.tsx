@@ -1,20 +1,20 @@
-import React, { useEffect, useRef, FunctionComponent } from 'react';
-import './social.css';
-import apiService from '../../ApiService';
+import React, { useEffect, useRef, FunctionComponent } from "react";
+import "./social.css";
+import apiService from "../../ApiService";
 
 function Social({ jam, msg, setMsg, initialState, isSignedUp, userData }): FunctionComponent{
   const messagesEndRef = useRef(null);
   const dummyDiv = useRef();
 
   const scrollToBottom = () => {
-    dummyDiv.current?.scrollIntoView({ behavior: 'smooth' });
+    dummyDiv.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
     if (messagesEndRef) {
-      messagesEndRef.current.addEventListener('DOMNodeInserted', (event) => {
+      messagesEndRef.current.addEventListener("DOMNodeInserted", (event) => {
         const { currentTarget: target } = event;
-        target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+        target.scroll({ top: target.scrollHeight, behavior: "smooth" });
       });
     }
     scrollToBottom();

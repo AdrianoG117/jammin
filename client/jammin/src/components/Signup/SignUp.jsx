@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import apiService from '../../ApiService.js';
-import './signup.css';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from "react";
+import apiService from "../../ApiService.js";
+import "./signup.css";
+import { useHistory } from "react-router-dom";
 
 const initialState = {
-  firstname: '',
-  lastname: '',
-  email: '',
-  password: '',
+  firstname: "",
+  lastname: "",
+  email: "",
+  password: "",
   pastEvents: [],
   comingEvents: [],
 };
@@ -34,7 +34,7 @@ function SignUp({ setUserData, setIsSignedUp }) {
     setUserData(user);
     setIsSignedUp(true);
     setState(initialState);
-    history.push('/dashboard');
+    history.push("/dashboard");
   }
 
   return (

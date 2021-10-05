@@ -1,19 +1,19 @@
-import Topbar from './components/Topbar/Topbar';
-import FindJam from './components/FindJam/FindJam';
-import CreateJam from './components/CreateJam/CreateJam.jsx';
-import Home from './components/Home/Home';
-import EventPage from './components/EventPage/EventPage';
-import SignUp from './components/Signup/SignUp';
-import LogIn from './components/LogIn/LogIn';
-import Dashboard from './components/Dashboard/Dashboard';
-import './App.css';
-import React, { useState, useEffect } from 'react';
+import Topbar from "./components/Topbar/Topbar";
+import FindJam from "./components/FindJam/FindJam";
+import CreateJam from "./components/CreateJam/CreateJam.jsx";
+import Home from "./components/Home/Home";
+import EventPage from "./components/EventPage/EventPage";
+import SignUp from "./components/Signup/SignUp";
+import LogIn from "./components/LogIn/LogIn";
+import Dashboard from "./components/Dashboard/Dashboard";
+import "./App.css";
+import React, { useState, useEffect } from "react";
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
   const [jams, setJams] = useState([]);
-  const [searchVal, setSearchVal] = useState('');
+  const [searchVal, setSearchVal] = useState("");
   const [center, setCenter] = useState(null);
   const [markers, setMarkers] = useState([]);
   const [userData, setUserData] = useState(null);
