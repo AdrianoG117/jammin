@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { useEffect, useRef, FunctionComponent } from "react";
+=======
+import  { useEffect, useRef, FunctionComponent } from "react";
+>>>>>>> parent of 2853b97... Merge branch 'dev_TS_refactor' of https://github.com/AdrianoG117/jammin into dev_TS_refactor
 import "./social.css";
 import apiService from "../../apiService/ApiService";
 import {Message, Jam, User} from "../../apiService/APIResponseTypes";
@@ -7,6 +11,7 @@ interface IProps {
   userData: User 
   setUserData: React.Dispatch<React.SetStateAction< User>>
   isSignedUp: boolean
+<<<<<<< HEAD
   jam: Jam
   msg: Message
   setMsg: React.Dispatch<React.SetStateAction<Message>>
@@ -15,6 +20,16 @@ interface IProps {
 }
 
 const  Social:FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isSignedUp, userData }:IProps) => {
+=======
+  // setIsSignedUp:  React.Dispatch<React.SetStateAction<boolean>>
+  jam: Jam
+  msg: Message
+  setMsg: React.Dispatch<React.SetStateAction< Message>>
+  initialState: Message
+}
+
+const Social: FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isSignedUp, userData }:IProps) =>{
+>>>>>>> parent of 2853b97... Merge branch 'dev_TS_refactor' of https://github.com/AdrianoG117/jammin into dev_TS_refactor
   const messagesEndRef = useRef(null);
   const dummyDiv = useRef();
 
@@ -84,6 +99,6 @@ const  Social:FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isS
       </div>
     </div>
   );
-}
+};
 
 export default Social;

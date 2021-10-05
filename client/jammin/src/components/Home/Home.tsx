@@ -1,21 +1,13 @@
-/* eslint-disable react/no-unescaped-entities */
-import { SetStateAction, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import "./home.css";
-import { Jam } from "../../apiService/APIResponseTypes";
 
-
-interface IProps {
-  setJams: React.Dispatch<SetStateAction< Jam | null >>;
-  setHasSearch: React.Dispatch<SetStateAction<boolean>>;
-}
-
-const Home: React.FunctionComponent<IProps> = ({ setJams, setHasSearch }: IProps) => {
+function Home({setJams,setHasSearch }) {
   
   const history = useHistory();
 
   useEffect(() => {
-      setJams (null);
+      setJams([]);
       setHasSearch(false);
     
   }, []);
@@ -35,6 +27,6 @@ const Home: React.FunctionComponent<IProps> = ({ setJams, setHasSearch }: IProps
       </div>
     </div>
   );
-};
+}
 
 export default Home;
