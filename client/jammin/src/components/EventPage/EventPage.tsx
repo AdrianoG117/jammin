@@ -3,7 +3,7 @@ import "./eventpage.css";
 import { useHistory } from "react-router-dom";
 import Social from "../Social/Social";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import apiService from "../../apiService/ApiService";
+import apiService from "../../ApiService";
 import Pin from "../../images/placeholder.png";
 import Voice from "../../images/voice.png";
 import moment from "moment";

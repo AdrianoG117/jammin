@@ -16,7 +16,7 @@
     "semi": ["error", "always"],
     "quotes": ["error", "double"]
   },
-  "plugins": ["react", "import", "jsx-a11y", "@typescript-eslint"],
+  "plugins": ["react", "import", "jest", "eslint-plugin-testing-library", "testing-library", "eslint-plugin-jest-dom", "jsx-a11y", "@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "client/jammin/tsconfig.json",
@@ -29,7 +29,8 @@
   "env": {
     "es6": true,
     "browser": true,
-    "node": true
+    "node": true,
+    "jest/globals": true
   },
   "settings": {
     "react": {

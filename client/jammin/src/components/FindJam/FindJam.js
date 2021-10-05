@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Search from "../Search/Search";
 import JamItem from "../JamItem/JamItem";
-import apiService from "../../apiService/ApiService";
+import apiService from "../../ApiService";
 import logo from "../../images/marker.png";
 import "./findjam.css";
 import {
