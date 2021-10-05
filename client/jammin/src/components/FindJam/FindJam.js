@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Search from "../Search/Search";
 import JamItem from "../JamItem/JamItem";
 import apiService from "../../ApiService";

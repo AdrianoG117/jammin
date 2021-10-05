@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
 import CreateJam from "./CreateJam";
-import apiService from "../../ApiService";
-import { userEvent } from "@testing-library/user-event";
+// import apiService from "../../ApiService";
+// import userEvent from "@testing-library/user-event";
+const {default: userEvent} = require("@testing-library/user-event");
 
-
-jest.mock(apiService, () => ( {
+jest.mock("../../ApiService", () => ( {
   postEvent: () => ( {
     title: "Rainy day",
     date: "2021-10-22T13:06",
@@ -23,7 +23,7 @@ const setStateObj = {
 };
 
 
-test.only("CreateJam component", async ()=> {
+test("CreateJam component", async ()=> {
   const setState = jest.fn();
   const storage = {setItem: jest.fn()};
   const submitInfo = {title: "Rainy day"};
@@ -32,11 +32,11 @@ test.only("CreateJam component", async ()=> {
     setState = {setState}
     storage = {storage}
   />);
-  const titleInput = screen.getByPlaceHolderText(/TITLE/);
-  const dateInput = screen.getByPlaceHolderText(/DATE/);
-  const descriptionInput = screen.getByPlaceHolderText(/DESCRIPTION OF YOUR JAM/);
-  const cityInput = screen.getByPlaceHolderText(/YOUR CITY/);
-  const locationInput = screen.getByPlaceHolderText(/JAM LOCATION/);
+  const titleInput = screen.getByPlaceholderText(/TITLE/);
+  const dateInput = screen.getByPlaceholderText(/DATE/);
+  const descriptionInput = screen.getByPlaceholderText(/DESCRIPTION OF YOUR JAM/);
+  const cityInput = screen.getByPlaceholderText(/YOUR CITY/);
+  const locationInput = screen.getByPlaceholderText(/JAM LOCATION/);
 
   const submitButton = screen.getByRole("button", {name: /CREATE MY EVENT/});
 
