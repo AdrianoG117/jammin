@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import CreateJam from "./CreateJam";
-import apiService from "../../ApiService";
+import apiService from "../../apiService/ApiService";
 import { userEvent } from "@testing-library/user-event";
 
 
