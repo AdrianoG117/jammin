@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, FunctionComponent } from "react";
 import "./social.css";
-import apiService from "../../ApiService";
+import apiService from "../../apiService/ApiService";
 
 function Social({ jam, msg, setMsg, initialState, isSignedUp, userData }): FunctionComponent{
   const messagesEndRef = useRef(null);

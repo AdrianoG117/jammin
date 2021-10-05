@@ -2,7 +2,7 @@ import React from "react";
 import "./myjamsitem.css";
 import moment from "moment";
 import Trash from "../../images/trash.png";
-import apiService from "../../ApiService";
+import apiService from "../../apiService/ApiService";
 import { useHistory } from "react-router-dom";
 
 
