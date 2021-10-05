@@ -1,31 +1,38 @@
-import React from "react";
+import {FunctionComponent} from "react";
 import "./myjamsitem.css";
 import moment from "moment";
 import Trash from "../../images/trash.png";
-import apiService from "../../ApiService";
+import apiService from "../../apiService/ApiService";
 import { useHistory } from "react-router-dom";
+import {Message, Jam, User} from "../../apiService/APIResponseTypes";
 
+interface IProps {
+  userData: User
+  eventData: Jam
+  setUserData: React.Dispatch<React.SetStateAction< User>>
+}
 
-function MyJamsItem({ eventData, userData, setUserData }) {
+const  MyJamsItem:FunctionComponent<IProps> = ({ eventData, userData, setUserData }:IProps) => {
   const history = useHistory();
-  async function removeFromEvents(userid, jamid) {
-    const body = {
-      id: userid,
-      jamId: jamid,
+  
+  async function removeFromEvents(userId: string | undefined, jamId: string | undefined) {
+   if(typeof userId === "string" && typeof jamId === "string") {
+      const body = {
+      id: userId,
+      jamId: jamId,
     };
-    const idToSend = {
-      id: jamid,
-    };
-    await apiService.removejam(body);
-    await apiService.removeParticipant(idToSend);
+  
+    await apiService.removeJam(body);
+    await apiService.removeParticipant(jamId);
 
     //send back from post request
     const filteredEvents = userData.comingEvents.filter(function (event) {
-      return event._id !== jamid;
+      return event._id !== jamId;
     });
     setUserData((previous) => {
       return { ...previous, comingEvents: filteredEvents };
     });
+  }
   }
 
   return (

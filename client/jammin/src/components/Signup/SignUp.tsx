@@ -1,9 +1,18 @@
-import React, { useState } from "react";
-import apiService from "../../ApiService.js";
+import React, { useState, SetStateAction } from "react";
+import apiService from "../../apiService/ApiService";
 import "./signup.css";
 import { useHistory } from "react-router-dom";
+import { User } from "../../apiService/APIResponseTypes";
 
-const initialState = {
+interface IProps {
+  setUserData: React.Dispatch<SetStateAction< User >>; 
+  setIsSignedUp: React.Dispatch<SetStateAction< boolean >>;
+  state: User;
+  setState: React.Dispatch<SetStateAction< User >>
+}
+
+
+const initialState:User = {
   firstname: "",
   lastname: "",
   email: "",
@@ -12,14 +21,14 @@ const initialState = {
   comingEvents: [],
 };
 
-function SignUp({ setUserData, setIsSignedUp }) {
+const SignUp:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp }:IProps) => {
   const [state, setState] = useState(initialState);
 
   const history = useHistory();
 
   // adds name property based on it's relevant property/key name, then adds the corresponding value
-  function handleChange(e) {
-    const { name, value } = e.target;
+  const handleChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const { name, value } = event.currentTarget;
     setState((previous) => ({
       ...previous,
       [name]: value,
@@ -27,13 +36,12 @@ function SignUp({ setUserData, setIsSignedUp }) {
   }
 
   // on submit adds the inital state object to the db
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const user = await apiService.register(state);
-    console.log("USER: ", user);
-    setUserData(user);
-    setIsSignedUp(true);
-    setState(initialState);
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const user = apiService.register(state)
+    .then((user) => { 
+      if (user) setUserData(user); setIsSignedUp(true);setState(initialState);})
+    .finally(() => [0])
     history.push("/dashboard");
   }
 

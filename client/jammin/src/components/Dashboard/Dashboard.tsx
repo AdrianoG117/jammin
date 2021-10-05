@@ -1,8 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, SetStateAction } from "react";
 import MyJamsItem from "../MyJamsItem/MyJamsItem";
 import "./dashboard.css";
+import { User } from "../../apiService/APIResponseTypes";
 
-function Dashboard({ userData, setUserData }) {
+
+interface IProps {
+  setUserData: React.Dispatch<SetStateAction< User >>; 
+  userData: User;
+}
+
+const Dashboard:React.FunctionComponent<IProps> = ({ userData, setUserData }:IProps) => {
   useEffect(() => {
     //sort events
     userData.comingEvents.sort(function (a, b) {
