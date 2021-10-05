@@ -1,8 +1,20 @@
-import React, { useEffect, useRef, FunctionComponent } from "react";
+import { useEffect, useRef, FunctionComponent } from "react";
 import "./social.css";
-import apiService from "../../ApiService";
+import apiService from "../../apiService/ApiService";
+import {Message, Jam, User} from "../../apiService/APIResponseTypes";
 
-function Social({ jam, msg, setMsg, initialState, isSignedUp, userData }): FunctionComponent{
+interface IProps {
+  userData: User 
+  setUserData: React.Dispatch<React.SetStateAction< User>>
+  isSignedUp: boolean
+  jam: Jam
+  msg: Message
+  setMsg: React.Dispatch<React.SetStateAction<Message>>
+  initialState: Message
+
+}
+
+const  Social:FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isSignedUp, userData }:IProps) => {
   const messagesEndRef = useRef(null);
   const dummyDiv = useRef();
 
