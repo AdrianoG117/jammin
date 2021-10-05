@@ -1,69 +1,38 @@
-import { useState, useEffect, FunctionComponent } from "react";
-// import * as React from "react";
+import React, { useState, useEffect, FunctionComponent } from "react";
 import "./eventpage.css";
 import { useHistory } from "react-router-dom";
 import Social from "../Social/Social";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import apiService from "../../apiService/ApiService";
+import apiService from "../../ApiService";
 import Pin from "../../images/placeholder.png";
-import  Voice from  "../../images/voice.png";
+import Voice from "../../images/voice.png";
 import moment from "moment";
-import {Message, Jam, User} from "../../apiService/APIResponseTypes";
 
-const initialState:Message = {
+const initialState = {
   name: "",
   message: "",
 };
 
-
-
-const initialJamState: Jam ={
-   title: "",
-  date: "",
-  description: "",
-  city: "",
-  cityCords: {lat: 0, lng:0},
-  location: "",
-  locCords: {lat: 0, lng:0},
-  host: "",
-  numOfParticipants: 1,
-  languages: "",
-  pastEvent: false,
-  comingEvent: true,
-  messages: [],
-};
-
-
-interface IProps {
-  userData: User 
-  setUserData: React.Dispatch<React.SetStateAction< User>>
-  isSignedUp: boolean
-  // setIsSignedUp:  React.Dispatch<React.SetStateAction<boolean>>
-}
-
-
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-const EventPage:FunctionComponent<IProps>= ({userData,setUserData,isSignedUp}:IProps) => {
+function EventPage (props): FunctionComponent {
   const pathname = window.location.pathname;
   const urlID = pathname.slice(6);
-  const [data, setData] = useState(initialJamState);
+  const [data, setData] = useState(props.location?.state?.jam);
   const [msg, setMsg] = useState(initialState); //message state
+  const userData = props.userData;
+  const setUserData = props.setUserData;
+  const isSignedUp = props.isSignedUp;
 
-   
   const history = useHistory();
 
   useEffect(() => {
-    apiService.getEvent(urlID)
-    .then((data) => {
-      if(data){
-        setData(data[0]);
-      }
-    })
-    .finally(()=>{});
-  }, [msg, urlID]);
+    apiService.getEvent(urlID).then((data) => {
+      setData(data[0]);
+    });
+  }, [msg]);
 
-  const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
+  const libraries = ["places"];
   const mapContainerStyle = {
     width: "100%",
     height: "96%",
@@ -72,21 +41,26 @@ const EventPage:FunctionComponent<IProps>= ({userData,setUserData,isSignedUp}:IP
   };
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: apiKey as string,
+    googleMapsApiKey: apiKey,
     libraries,
   });
 
+  if (loadError) return "Error loading maps";
+  if (!isLoaded) return "Loading Maps";
+
   const center = data?.locCords;
   // on click used to increment the participants going(number of participants)
-  async function addToEvents(userId: string | undefined, jamId: string | undefined): Promise<void> {
-    if(typeof userId === "string" && typeof jamId === "string") {
-      const body = {
-      id: userId,
-      jamId: jamId,
+  async function addToEvents(userid, jamid) {
+    const body = {
+      id: userid,
+      jamId: jamid,
     };
-      apiService.addJam(body);
-    await apiService.addParticipant(jamId);
-    
+
+    const idToSend = {
+      id: jamid,
+    };
+    await apiService.addjam(body);
+    await apiService.addParticipant(idToSend);
     setUserData((previous) => ({
       ...previous,
       comingEvents: [...previous.comingEvents, data],
@@ -97,22 +71,17 @@ const EventPage:FunctionComponent<IProps>= ({userData,setUserData,isSignedUp}:IP
         numOfParticipants: previous.numOfParticipants + 1,
       };
     });
-    }
-    
-    
-   
   }
 
-  function isEventAdded(jamid:string | undefined) {
-    if(userData && typeof jamid === "string"){
-      const arr = userData.comingEvents;      
+  function isEventAdded(jamid) {
+    const arr = userData.comingEvents;
+    console.log("arrrr", arr);
     for (let i = 0; i < arr.length; i++) {
       if (arr[i]._id === jamid) {
         return true;
       }
     }
     return false;
-    }
   }
 
   return (
@@ -128,7 +97,7 @@ const EventPage:FunctionComponent<IProps>= ({userData,setUserData,isSignedUp}:IP
                 ) : (
                   <button
                     className="add-btn"
-                    onClick={() => addToEvents(userData._id , data._id)}
+                    onClick={() => addToEvents(userData._id, data._id)}
                   >
                     PARTICIPATE
                   </button>
@@ -182,14 +151,14 @@ const EventPage:FunctionComponent<IProps>= ({userData,setUserData,isSignedUp}:IP
               setMsg={setMsg}
               initialState={initialState}
               isSignedUp={isSignedUp}
-              userData={userData} 
-              setUserData={setUserData}          />
+              userData={userData}
+            />
           </div>
         </>
       )}
     </div>
   );
-};
+}
 
 export default EventPage;
 
