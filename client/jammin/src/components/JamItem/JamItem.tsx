@@ -1,10 +1,19 @@
-import React from "react";
+import {FunctionComponent} from "react";
 import "./JamItem.css";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
+import {Jam} from "../../apiService/APIResponseTypes";
+
+type cords = { lat: number
+    lng: number} | null
+
+interface IProps{
+  jam: Jam
+ setHighEvent: React.Dispatch<React.SetStateAction< cords>>
+}
 
 
-function JamItem({ jam,setHighEvent }) {
+const JamItem:FunctionComponent<IProps> = ({ jam,setHighEvent }) => {
   const history = useHistory();
   return (
     <div
