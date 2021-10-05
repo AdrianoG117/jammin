@@ -7,7 +7,7 @@ import SignUp from "./components/Signup/SignUp";
 import LogIn from "./components/LogIn/LogIn";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 

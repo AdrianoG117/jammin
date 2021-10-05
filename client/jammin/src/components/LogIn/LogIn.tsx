@@ -16,7 +16,7 @@ interface InitialState  {
   password: string,
 };
 
-const initialState:InitialState = {
+const initialState = {
   email: "",
   password: "",
 };
@@ -38,8 +38,8 @@ const LogIn:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp }:IP
     event.preventDefault();
     const user = apiService.login(state)
     .then((user) => {
-      if (user) setUserData(user); setIsSignedUp(true); setState(initialState); history.push('/dashboard');})
-      .finally(() => [0]);
+      if (user) setUserData(user); setIsSignedUp(true); setState(initialState); history.push('/dashboard');
+    }).finally(()=>[0]);
     
   }
 

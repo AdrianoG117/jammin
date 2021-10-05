@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import Signup from "./SignUp";
 import userEvent from "@testing-library/user-event";
-import apiService from "../../ApiService.js";
+import apiService from "../../apiService/ApiService.js/index.js";
 
 const mockProps = {
     firstname: "front test",
