@@ -1,8 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import CreateJam from "./CreateJam";
+<<<<<<< HEAD
 // import apiService from "../../ApiService";
 // import userEvent from "@testing-library/user-event";
 const {default: userEvent} = require("@testing-library/user-event");
+=======
+import apiService from "../../apiService/ApiService";
+import { userEvent } from "@testing-library/user-event";
+>>>>>>> c3518d968a587c88bf7684aac1be1462dfe7af42
 
 jest.mock("../../ApiService", () => ( {
   postEvent: () => ( {

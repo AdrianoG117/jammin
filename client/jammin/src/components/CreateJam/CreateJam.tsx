@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Search from "../Search/Search";
-import apiService from "../../ApiService";
+import apiService from "../../apiService/ApiService";
 import "./createjam.css";
 import { useHistory } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
