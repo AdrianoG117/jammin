@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import './topbar.css';
 import { useHistory } from 'react-router-dom';
 
-function Topbar({ setUserData, isSignedUp, setIsSignedUp }) {
+function Topbar ({ setUserData, isSignedUp, setIsSignedUp }) :FunctionComponent {
   const history = useHistory();
 
   return (
