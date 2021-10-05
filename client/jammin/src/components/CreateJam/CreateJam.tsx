@@ -1,23 +1,23 @@
-import React, { useState } from 'react';
-import Search from '../Search/Search';
-import apiService from '../../ApiService';
-import './createjam.css';
-import { useHistory } from 'react-router-dom';
-import { useLoadScript } from '@react-google-maps/api';
+import React, { useState } from "react";
+import Search from "../Search/Search";
+import apiService from "../../ApiService";
+import "./createjam.css";
+import { useHistory } from "react-router-dom";
+import { useLoadScript } from "@react-google-maps/api";
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const initialState = {
-  title: '',
-  date: '',
-  description: '',
-  city: '',
+  title: "",
+  date: "",
+  description: "",
+  city: "",
   cityCords: null,
-  location: '',
+  location: "",
   locCords: null,
-  host: '',
+  host: "",
   numOfParticipants: 1,
-  languages: '',
+  languages: "",
   pastEvent: false,
   comingEvent: true,
   messages: [],
@@ -28,15 +28,15 @@ function CreateJam() {
   
   const history = useHistory();
 
-  const libraries = ['places'];
+  const libraries = ["places"];
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: apiKey,
     libraries,
   });
 
-  if (loadError) return 'Error loading maps';
-  if (!isLoaded) return 'Loading Maps';
+  if (loadError) return "Error loading maps";
+  if (!isLoaded) return "Loading Maps";
 
 
   function handleChange(e) {
@@ -62,7 +62,7 @@ function CreateJam() {
     )
       .then((res) => res.json())
       .then((data) => {
-        let coords = data.results[0].geometry.location;
+        const coords = data.results[0].geometry.location;
         console.log(data);
         setState((previous) => ({
           ...previous,
@@ -79,7 +79,7 @@ function CreateJam() {
     )
       .then((res) => res.json())
       .then((data) => {
-        let coords = data.results[0].geometry.location;
+        const coords = data.results[0].geometry.location;
         setState((previous) => ({
           ...previous,
           location: loc,
@@ -90,28 +90,28 @@ function CreateJam() {
   }
 
   const placeHolders = {
-    city: 'YOUR CITY',
-    location: 'JAM LOCATION',
+    city: "YOUR CITY",
+    location: "JAM LOCATION",
   };
 
   const inputstyle = {
-    backgroundColor: 'transparent',
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    margin: '1rem',
-    height: '14%',
+    backgroundColor: "transparent",
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    margin: "1rem",
+    height: "14%",
   };
 
   const inputcontainstyle = {
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    color: 'white',
-    height: '110%',
-    width: '60%',
-    margin: '0 auto',
-    borderRadius: '20px',
-    fontSize: '1.2rem',
-    padding: '0.4rem',
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    color: "white",
+    height: "110%",
+    width: "60%",
+    margin: "0 auto",
+    borderRadius: "20px",
+    fontSize: "1.2rem",
+    padding: "0.4rem",
   };
 
   return (

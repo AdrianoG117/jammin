@@ -1,6 +1,6 @@
-import {render, screen} from '@testing-library/react';
-import JamItem from './JamItem';
-import moment from 'moment';
+import {render, screen} from "@testing-library/react";
+import JamItem from "./JamItem";
+import moment from "moment";
 
 const mockProps = {
   jam: {
@@ -20,17 +20,17 @@ const mockProps = {
   },
   setHighEvent: ()=>{},
   
-}
+};
 
-describe('JamItem component', () => {
-  test('should match the snapshot', () => {
+describe("JamItem component", () => {
+  test("should match the snapshot", () => {
     const {container} = render(<JamItem
       jam={mockProps.jam}
       setHighEvent={mockProps.setHighEvent}
       ></JamItem>);
       expect(container.firstChild).toMatchSnapshot();
-  })
-  })
+  });
+  });
   
   describe("prop value rendering", () => {
     beforeEach(() => {
@@ -39,13 +39,13 @@ describe('JamItem component', () => {
             setHighEvent={mockProps.setHighEvent}
             ></JamItem>);
 });
-     test('rendered title should match jam prop', () => {
-      screen.getByText(`${mockProps.jam.title}`)
-     })
-     test('rendered location should match jam prop', () => {
-      screen.getByText(`${mockProps.jam.location}`)
-     })
-     test('rendered date should match jam prop', () => {
-      screen.getByText(`${moment(mockProps.jam.date).format('MMM Do, h:mm a')}`)
-     })    
-  })
+     test("rendered title should match jam prop", () => {
+      screen.getByText(`${mockProps.jam.title}`);
+     });
+     test("rendered location should match jam prop", () => {
+      screen.getByText(`${mockProps.jam.location}`);
+     });
+     test("rendered date should match jam prop", () => {
+      screen.getByText(`${moment(mockProps.jam.date).format("MMM Do, h:mm a")}`);
+     });    
+  });

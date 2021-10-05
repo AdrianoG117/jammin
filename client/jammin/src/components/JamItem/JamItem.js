@@ -1,7 +1,7 @@
-import React from 'react';
-import './JamItem.css';
-import { useHistory } from 'react-router-dom';
-import moment from 'moment';
+import React from "react";
+import "./JamItem.css";
+import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 
 function JamItem({ jam,setHighEvent }) {
@@ -17,7 +17,7 @@ function JamItem({ jam,setHighEvent }) {
     >
       <div className="single-jam">
         <div className="jam-info">
-          <h1>{moment(jam.date).format('MMM Do, h:mm a')}</h1>
+          <h1>{moment(jam.date).format("MMM Do, h:mm a")}</h1>
           <h1>{jam.title}</h1>
           <div className="jam-loc">
             <img src="" alt="" />
