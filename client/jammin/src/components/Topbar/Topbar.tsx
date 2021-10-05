@@ -2,7 +2,11 @@ import React, { FunctionComponent } from 'react';
 import "./topbar.css";
 import { useHistory } from "react-router-dom";
 
-function Topbar ({ setUserData, isSignedUp, setIsSignedUp }) :FunctionComponent {
+interface IProps {
+  isSignedUp: boolean;
+}
+
+function Topbar({ setUserData, isSignedUp, setIsSignedUp }):FunctionComponent<IProps>  {
   const history = useHistory();
 
   return (
