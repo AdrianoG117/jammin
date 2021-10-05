@@ -1,23 +1,26 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, SetStateAction } from 'react';
 import "./topbar.css";
 import { useHistory } from "react-router-dom";
+import { User } from "../../apiService/APIResponseTypes";
 
 interface IProps {
+  setUserData: React.Dispatch<SetStateAction< User | null >>; 
+  setIsSignedUp: React.Dispatch<SetStateAction<boolean>>;
   isSignedUp: boolean;
 }
 
-function Topbar({ setUserData, isSignedUp, setIsSignedUp }):FunctionComponent<IProps>  {
+const Topbar:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp, isSignedUp }:IProps) => {
   const history = useHistory();
 
   return (
     <div className="nav-container">
-      <div to="/" className="home-tag" onClick={() => history.push("/")} >
+      <div className="home-tag" onClick={() => history.push("/")} >
         <h2>Home</h2>
       </div>
-      <div to="/createjam" className="menu-tag" onClick={() => history.push("/dashboard")} >
+      <div className="menu-tag" onClick={() => history.push("/dashboard")} >
         <li>Create Jam</li>
       </div>
-      <div to="/findjam" className="menu-tag" onClick={() => history.push("/dashboard")} >
+      <div className="menu-tag" onClick={() => history.push("/dashboard")} >
         <li>Find Jam</li>
       </div>
 
