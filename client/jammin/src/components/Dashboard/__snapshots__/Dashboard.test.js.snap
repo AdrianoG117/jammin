@@ -41,16 +41,16 @@ exports[`Dashboard component should match the snapshot with array 1`] = `
         <div
           class="button-container"
         >
-          <div>
-            <button
-              id="see-btn"
-            >
-              See Event
-            </button>
-          </div>
+          <button
+            id="see-btn"
+          >
+            See Event
+          </button>
         </div>
         <div
           class="trash-container"
+          role="button"
+          tabindex="0"
         >
           <img
             alt=""
@@ -81,16 +81,16 @@ exports[`Dashboard component should match the snapshot with array 1`] = `
         <div
           class="button-container"
         >
-          <div>
-            <button
-              id="see-btn"
-            >
-              See Event
-            </button>
-          </div>
+          <button
+            id="see-btn"
+          >
+            See Event
+          </button>
         </div>
         <div
           class="trash-container"
+          role="button"
+          tabindex="0"
         >
           <img
             alt=""

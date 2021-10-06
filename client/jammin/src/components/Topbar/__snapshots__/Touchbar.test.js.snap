@@ -6,7 +6,8 @@ exports[`Topbar component should match the snapshot 1`] = `
 >
   <div
     class="home-tag"
-    to="/"
+    role="button"
+    tabindex="0"
   >
     <h2>
       Home
@@ -14,15 +15,17 @@ exports[`Topbar component should match the snapshot 1`] = `
   </div>
   <div
     class="menu-tag"
-    to="/createjam"
   >
-    <li>
+    <li
+      role="presentation"
+    >
       Create Jam
     </li>
   </div>
   <div
     class="menu-tag"
-    to="/findjam"
+    role="button"
+    tabindex="0"
   >
     <li>
       Find Jam
@@ -33,11 +36,13 @@ exports[`Topbar component should match the snapshot 1`] = `
   >
     <li
       class="nav-el"
+      role="presentation"
     >
       Dashboard
     </li>
     <li
       class="nav-el"
+      role="presentation"
     >
       Log Out
     </li>
