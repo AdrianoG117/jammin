@@ -19,7 +19,7 @@
   "plugins": ["react", "import", "jest", "eslint-plugin-testing-library", "testing-library", "eslint-plugin-jest-dom", "jsx-a11y", "@typescript-eslint"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "project": "client/jammin/tsconfig.json",
+    "project": "./tsconfig.json",
     "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
@@ -40,9 +40,9 @@
       "@typescript-eslint/parser": [".ts", ".tsx"]
     },
     "import/resolver": {
-      "typescript": {
-        "alwaysTryTypes": true
-      }
+      // "typescript": {
+      //   "alwaysTryTypes": true
+      // }
     }
   }
 }
