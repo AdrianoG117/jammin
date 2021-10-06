@@ -2,13 +2,14 @@ import React from "react";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import { User } from "../../apiService/APIResponseTypes";
+import { Jam } from "../../apiService/APIResponseTypes";
 
 
 interface IProps {
-  setCity: React.Dispatch< string >;//func passed in CreateJam
-  setLocation: React.Dispatch< string >;//func passed in CreateJam
-  searchJams: React.Dispatch< string >;//func passed from FindJam
+  setCity?: React.Dispatch< string >;//func passed in CreateJam
+  setLocation?: React.Dispatch< string >;//func passed in CreateJam
+  searchJams?: React.Dispatch< string >;//func passed from FindJam
+  state?: Jam;
   inputstyle: { //obj passed in CreateJam
     backgroundColor: string, 
     width: string, display: string, 
@@ -24,9 +25,9 @@ interface IProps {
     fontSize: string,
     padding: string,
    } 
-  cityPlace: string;  //obj passed in CreateJam
-  locPlace: string;    //obj passed in CreateJam
-  findPlaceholder: string; //string passed in FindJam
+  cityPlace?: string;  //obj passed in CreateJam
+  locPlace?: string;    //obj passed in CreateJam
+  findPlaceholder?: string; //string passed in FindJam
 }
 
 const Search:React.FunctionComponent<IProps> = ({ setCity, setLocation, searchJams, inputstyle, inputcontainstyle, cityPlace, locPlace, findPlaceholder }:IProps) => {

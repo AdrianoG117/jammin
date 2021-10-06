@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Search from "../Search/Search";
 import apiService from "../../apiService/ApiService";
 import "./createjam.css";
@@ -40,7 +40,7 @@ function CreateJam() {
   if (!isLoaded) return "Loading Maps";
 
 
-  function handleChange(e) {
+  function handleChange(e:any) {
     const { name, value } = e.target;
     setState((previous) => ({
       ...previous,
@@ -48,7 +48,7 @@ function CreateJam() {
     }));
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
     const event = await apiService.postEvent(state); //make the function return the event, await that
     const id = event?._id;
@@ -57,7 +57,7 @@ function CreateJam() {
   }
 // We can remove this setCity function/input
 //setLocation is making fetch call that return the city location. data.results[0].formatted_address.
-  function setCity(loc) {
+  function setCity(loc: any) {
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${apiKey}`
     )
@@ -73,7 +73,7 @@ function CreateJam() {
       });
   }
 
-  function setLocation(loc) {
+  function setLocation(loc: any) {
     //add city info
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${apiKey}`
@@ -166,8 +166,8 @@ function CreateJam() {
           placeholder="DESCRIPTION OF YOUR JAM"
           value={state.description}
           onChange={handleChange}
-          cols="30"
-          rows="10"
+          cols={30}
+          rows={10}
         ></textarea>
         <button className="create-btn">CREATE MY EVENT</button>
       </form>
