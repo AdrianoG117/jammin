@@ -22,22 +22,28 @@ const mapContainerStyle = {
   borderRadius: "10px",
 };
 
+interface coords {
+    lat: number
+    lng: number
+  }
+
 interface IProps {
-  jams:Jam[];
-  setJams: React.Dispatch<SetStateAction< Jam >
-  searchVal:
-  setSearch:
-  setSearchVal:
-  center:
-  setCenter:
-  markers:
-  setMarkers:
-  hasSearch:
-  setHasSearch:
-  isSignedUp:
+  jams:Jam[] | void;
+  setJams: React.Dispatch<SetStateAction< Jam[] >>
+  searchVal: string;
+  // setSearch:
+  setSearchVal: React.Dispatch<SetStateAction<string>>
+  center: coords | null;
+  setCenter: React.Dispatch<SetStateAction<coords | null>>
+  markers: {lat: number, lng: number}[];
+  setMarkers: React.Dispatch<SetStateAction<{lat: number, lng: number}[]>>
+  hasSearch: boolean;
+  setHasSearch: React.Dispatch<SetStateAction<boolean>>
+  isSignedUp: boolean
 }
 
-const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, setSearchVal, center, setCenter, markers, setMarkers, hasSearch, setHasSearch, isSignedUp }:IProps) => {
+const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, setSearchVal, center, setCenter, markers, setMarkers, hasSearch, setHasSearch, isSignedUp }:IProps): React.ReactElement => {
+
   // const jams = props.jams;
   // console.log(jams);
   // const setJams = props.setJams;
@@ -53,32 +59,34 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
 
   // const isSignedUp = props.isSignedUp;
 
-  const [selected, setSelected] = useState(null);
-  const [idRoute, setIdRoute] = useState(null);
-  const [highEvent, setHighEvent] = useState(null);
+  const [selected, setSelected] = useState<coords | null>(null);
+  const [idRoute, setIdRoute] = useState<string | undefined>(undefined);
+  const [highEvent, setHighEvent] = useState<coords | null>(null);
 
   const findPlaceholder = "Enter your city";
 
-  function searchJams(input) {
+  function searchJams(input: string) {
     setSearchVal(input);
   }
 
-  function getCoords(input) {
-    let result = [];
-    for (let i = 0; i < input.length; i++) {
-      result.push(input[i].locCords);
+  function getCoords(input: Jam[] | void): coords[] | void {
+    if (input) {
+      let result = [];
+      for (let i = 0; i < input.length; i++) {
+        result.push(input[i].locCords);
+      }
+      return result;
     }
-    return result;
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: any) {
     e.preventDefault();
-    const result = await apiService.getJams({ city: searchVal });
+    const result: void | Jam[] = await apiService.getJams({ city: searchVal });
     setHasSearch(true);
 
-    setJams(result);
+    if (result) setJams(result);
     let eventsCoords = getCoords(result);
-    setMarkers(eventsCoords);
+    if (eventsCoords) setMarkers(eventsCoords);
 
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${searchVal}&key=${apiKey}`
@@ -90,7 +98,8 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
       });
   }
 
-  function coordsToId(coords) {
+  function coordsToId(coords: coords) {
+    if (jams)
     for (let i = 0; i < jams.length; i++) {
       if (
         jams[i].locCords.lat === coords.lat &&
@@ -101,13 +110,12 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
     }
   }
 
+  const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
+
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: apiKey,
+    googleMapsApiKey: apiKey as string,
     libraries,
   });
-
-  if (loadError) return "Error loading maps";
-  if (!isLoaded) return "Loading Maps";
 
   return (
     <div className="findJam-main">
@@ -117,24 +125,22 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
       </form>
       <div className="jams-list-container">
         <div className="jams-list">
-          {jams.length
+          {jams?.length
             ? jams.map((jam) => (
                 <JamItem
                   jam={jam}
-                  highEvent={highEvent}
                   setHighEvent={setHighEvent}
-                  isSignedUp={isSignedUp}
                 />
               ))
             : null}
         </div>
         <div className="maps-container">
           <div className="maps">
-            {jams.length ? (
+            {jams?.length ? (
               <GoogleMap
                 mapContainerStyle={mapContainerStyle}
                 zoom={11}
-                center={center}
+                center={center? center : {lat: 0, lng: 0}}
               >
                 {markers.map((marker) => (
                   <Marker
@@ -180,7 +186,7 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
         </div>
       </div>
       <div className="error-container">
-        {jams.length === 0 && hasSearch ? (
+        {jams?.length === 0 && hasSearch ? (
           <div className="msg-fail">
             <h1 id="search-fail">
               OOPS it seems there is no jams coming up in this city 😅

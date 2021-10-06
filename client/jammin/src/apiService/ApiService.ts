@@ -15,7 +15,11 @@ const postEvent = (event: Jam): Promise<Jam | void> => {
     .catch((err) => console.log(err));
 };
 
-const getJams = (city:string): Promise<Jam[] | void> =>{
+interface searchValue {
+    city: string
+  }
+
+const getJams = (city:searchValue): Promise<Jam[] | void> =>{
   return fetch(`${BASE_URL}/searchjam`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

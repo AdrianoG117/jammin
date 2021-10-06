@@ -71,10 +71,7 @@ const App:React.FunctionComponent = () => {
                   setMarkers={setMarkers}
                   hasSearch={hasSearch}
                   setHasSearch={setHasSearch}
-                  userData={userData}
-                  setUserData={setUserData}
                   isSignedUp={isSignedUp}
-                  setIsSignedUp={setIsSignedUp}
                 />
               )}
             />

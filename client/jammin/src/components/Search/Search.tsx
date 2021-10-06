@@ -10,12 +10,12 @@ interface IProps {
   setLocation?: React.Dispatch< string >;//func passed in CreateJam
   searchJams?: React.Dispatch< string >;//func passed from FindJam
   state?: Jam;
-  inputstyle: { //obj passed in CreateJam
+  inputstyle?: { //obj passed in CreateJam
     backgroundColor: string, 
     width: string, display: string, 
     justifyContent: string, margin: string, 
     height: string }; 
-  inputcontainstyle: {  
+  inputcontainstyle?: {  
     backgroundColor: string,  //obj passed in CreateJam
     color: string,
     height: string,

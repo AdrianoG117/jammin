@@ -9,7 +9,7 @@ type cords = { lat: number
 
 interface IProps{
   jam: Jam
- setHighEvent: React.Dispatch<React.SetStateAction< cords>>
+ setHighEvent: React.Dispatch<React.SetStateAction< cords | null>> 
 }
 
 

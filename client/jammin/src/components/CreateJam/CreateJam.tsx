@@ -41,7 +41,7 @@ function CreateJam() {
   if (!isLoaded) return "Loading Maps";
 
 
-  function handleChange(e:any) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> ) {
     const { name, value } = e.target;
     setState((previous) => ({
       ...previous,
@@ -49,7 +49,7 @@ function CreateJam() {
     }));
   }
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e:React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
     const event = await apiService.postEvent(state); //make the function return the event, await that
     const id = event?._id;
@@ -58,7 +58,7 @@ function CreateJam() {
   }
 // We can remove this setCity function/input
 //setLocation is making fetch call that return the city location. data.results[0].formatted_address.
-  function setCity(loc: any) {
+  function setCity(loc: string) {
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${apiKey}`
     )
@@ -74,7 +74,7 @@ function CreateJam() {
       });
   }
 
-  function setLocation(loc: any) {
+  function setLocation(loc: string) {
     //add city info
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${apiKey}`
@@ -102,7 +102,7 @@ function CreateJam() {
         <input
           required
           type="text"
-          placeholder="TITLE"
+          placeholder="TITLE" 
           name="title"
           value={state.title}
           onChange={handleChange}
