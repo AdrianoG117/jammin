@@ -1,4 +1,4 @@
-import React, { MouseEvent } from "react";
+import React from "react";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from "@reach/combobox";
 import "@reach/combobox/styles.css";
@@ -22,7 +22,8 @@ interface IProps {
     margin: string,
     borderRadius: string,
     fontSize: string,
-    padding: string, } 
+    padding: string,
+   } 
   cityPlace: string;  //obj passed in CreateJam
   locPlace: string;    //obj passed in CreateJam
   findPlaceholder: string; //string passed in FindJam
@@ -55,7 +56,7 @@ const Search:React.FunctionComponent<IProps> = ({ setCity, setLocation, searchJa
     borderRadius: "20px",
     color: "white",
     padding: "1rem",
-    textAlign: "center",
+    textAlign: "center" as "center",
   };
 
   const containerStyle = {

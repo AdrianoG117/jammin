@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, SetStateAction } from "react";
 import Search from "../Search/Search";
 import JamItem from "../JamItem/JamItem";
 import apiService from "../../apiService/ApiService";
 import logo from "../../images/marker.png";
 import "./findjam.css";
+import { Jam } from "../../apiService/APIResponseTypes";
 import {
   GoogleMap,
   useLoadScript,
@@ -21,21 +22,36 @@ const mapContainerStyle = {
   borderRadius: "10px",
 };
 
-function FindJam(props) {
-  const jams = props.jams;
-  console.log(jams);
-  const setJams = props.setJams;
-  const searchVal = props.searchVal;
-  const setSearchVal = props.setSearchVal;
-  const center = props.center;
-  const setCenter = props.setCenter;
-  const markers = props.markers;
-  const setMarkers = props.setMarkers;
+interface IProps {
+  jams:Jam[];
+  setJams: React.Dispatch<SetStateAction< Jam >
+  searchVal:
+  setSearch:
+  setSearchVal:
+  center:
+  setCenter:
+  markers:
+  setMarkers:
+  hasSearch:
+  setHasSearch:
+  isSignedUp:
+}
 
-  const hasSearch = props.hasSearch;
-  const setHasSearch = props.setHasSearch;
+const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, setSearchVal, center, setCenter, markers, setMarkers, hasSearch, setHasSearch, isSignedUp }:IProps) => {
+  // const jams = props.jams;
+  // console.log(jams);
+  // const setJams = props.setJams;
+  // const searchVal = props.searchVal;
+  // const setSearchVal = props.setSearchVal;
+  // const center = props.center;
+  // const setCenter = props.setCenter;
+  // const markers = props.markers;
+  // const setMarkers = props.setMarkers;
 
-  const isSignedUp = props.isSignedUp;
+  // const hasSearch = props.hasSearch;
+  // const setHasSearch = props.setHasSearch;
+
+  // const isSignedUp = props.isSignedUp;
 
   const [selected, setSelected] = useState(null);
   const [idRoute, setIdRoute] = useState(null);
