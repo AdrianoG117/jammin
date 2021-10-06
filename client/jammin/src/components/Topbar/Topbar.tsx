@@ -2,9 +2,10 @@ import React, { FunctionComponent, SetStateAction } from 'react';
 import "./topbar.css";
 import { useHistory } from "react-router-dom";
 import { User } from "../../apiService/APIResponseTypes";
+import { initialUserState } from '../../App'
 
 interface IProps {
-  setUserData: React.Dispatch<SetStateAction< User | null >>; 
+  setUserData: React.Dispatch<SetStateAction< User >>; 
   setIsSignedUp: React.Dispatch<SetStateAction<boolean>>;
   isSignedUp: boolean;
 }
@@ -32,7 +33,7 @@ const Topbar:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp, is
           <li
             className="nav-el"
             onClick={() => {
-              setUserData(null);
+              setUserData(initialUserState);
               setIsSignedUp(false);
               history.push("/login");
             }}

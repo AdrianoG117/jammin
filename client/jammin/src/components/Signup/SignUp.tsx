@@ -7,8 +7,6 @@ import { User } from "../../apiService/APIResponseTypes";
 interface IProps {
   setUserData: React.Dispatch<SetStateAction< User >>; 
   setIsSignedUp: React.Dispatch<SetStateAction< boolean >>;
-  state: User;
-  setState: React.Dispatch<SetStateAction< User >>
 }
 
 
@@ -22,7 +20,7 @@ const initialState:User = {
 };
 
 const SignUp:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp }:IProps) => {
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState<User>(initialState);
 
   const history = useHistory();
 

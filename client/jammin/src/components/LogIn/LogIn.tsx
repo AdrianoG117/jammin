@@ -1,4 +1,4 @@
-import React, { useState, SetStateAction, SyntheticEvent } from "react";
+import React, { useState, SetStateAction } from "react";
 import apiService from "../../apiService/ApiService";
 import "./login.css";
 import { useHistory } from "react-router-dom";
@@ -7,8 +7,6 @@ import { User } from "../../apiService/APIResponseTypes";
 interface IProps {
   setUserData: React.Dispatch<SetStateAction< User >>; 
   setIsSignedUp: React.Dispatch<SetStateAction< boolean >>;
-  state: InitialState | User;
-  setState: React.Dispatch<SetStateAction< InitialState | User >>
 }
 
 interface InitialState  {
@@ -22,7 +20,7 @@ const initialState = {
 };
 
 const LogIn:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp }:IProps) => {
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState<InitialState>(initialState);
 
   const history = useHistory();
 

@@ -7,19 +7,27 @@ import SignUp from "./components/Signup/SignUp";
 import LogIn from "./components/LogIn/LogIn";
 import Dashboard from "./components/Dashboard/Dashboard";
 import "./App.css";
-import { useState, useEffect } from "react";
-
+import React, { useState, useEffect, SetStateAction } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Jam, User } from './apiService/APIResponseTypes';
 
-function App() {
-  const [jams, setJams] = useState([]);
-  const [searchVal, setSearchVal] = useState("");
-  const [center, setCenter] = useState(null);
-  const [markers, setMarkers] = useState([]);
-  const [userData, setUserData] = useState(null);
-  const [isSignedUp, setIsSignedUp] = useState(false);
+export const initialUserState: User = {
+  firstname: "",
+  lastname: "",
+  email: "",
+  password: "",
+  pastEvents: [],
+  comingEvents: [],
+}
 
-  const [hasSearch, setHasSearch] = useState(false);
+const App:React.FunctionComponent = () => {
+  const [jams, setJams] = useState<Jam[]>([]);
+  const [searchVal, setSearchVal] = useState<string>("");
+  const [center, setCenter] = useState< { lng:number, lat:number } | null >(null);
+  const [markers, setMarkers] = useState< { lng:number, lat:number }[] >([]);
+  const [userData, setUserData] = useState< User >(initialUserState);
+  const [isSignedUp, setIsSignedUp] = useState< boolean >(false);
+  const [hasSearch, setHasSearch] = useState< boolean >(false);
 
   useEffect(() => {
     setJams([]);
@@ -30,7 +38,6 @@ function App() {
       <div className="App">
         <div className="app-container">
           <Topbar
-            userData={userData}
             setUserData={setUserData}
             isSignedUp={isSignedUp}
             setIsSignedUp={setIsSignedUp}
@@ -42,13 +49,12 @@ function App() {
               render={(props) => (
                 <Home
                   {...props}
-                  jams={jams}
                   setJams={setJams}
                   setHasSearch={setHasSearch}
                 />
               )}
             />
-            <Route path="/createjam" exact component={CreateJam} />
+            <Route path="/createjam" exact render={CreateJam} />
             <Route
               path="/findjam"
               exact
@@ -81,7 +87,6 @@ function App() {
                   userData={userData}
                   setUserData={setUserData}
                   isSignedUp={isSignedUp}
-                  setIsSignedUp={setIsSignedUp}
                 />
               )}
             />
@@ -91,9 +96,7 @@ function App() {
               render={(props) => (
                 <SignUp
                   {...props}
-                  userData={userData}
                   setUserData={setUserData}
-                  isSignedUp={isSignedUp}
                   setIsSignedUp={setIsSignedUp}
                 />
               )}
@@ -104,9 +107,7 @@ function App() {
               render={(props) => (
                 <LogIn
                   {...props}
-                  userData={userData}
                   setUserData={setUserData}
-                  isSignedUp={isSignedUp}
                   setIsSignedUp={setIsSignedUp}
                 />
               )}
@@ -117,11 +118,8 @@ function App() {
               render={(...props) => (
                 <Dashboard
                   {...props}
-                
                   userData={userData}
                   setUserData={setUserData}
-                  isSignedUp={isSignedUp}
-                  setIsSignedUp={setIsSignedUp}
                 />
               )}
             />

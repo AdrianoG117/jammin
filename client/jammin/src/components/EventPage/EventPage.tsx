@@ -36,9 +36,8 @@ const initialJamState: Jam ={
 
 interface IProps {
   userData: User 
-  setUserData: React.Dispatch<React.SetStateAction< User>>
+  setUserData: React.Dispatch<React.SetStateAction< User >>
   isSignedUp: boolean
-  // setIsSignedUp:  React.Dispatch<React.SetStateAction<boolean>>
 }
 
 
@@ -79,6 +78,7 @@ const EventPage:FunctionComponent<IProps>= ({userData,setUserData,isSignedUp}:IP
   const center = data?.locCords;
   // on click used to increment the participants going(number of participants)
   async function addToEvents(userId: string | undefined, jamId: string | undefined): Promise<void> {
+    
     if(typeof userId === "string" && typeof jamId === "string") {
       const body = {
       id: userId,
@@ -87,7 +87,7 @@ const EventPage:FunctionComponent<IProps>= ({userData,setUserData,isSignedUp}:IP
       apiService.addJam(body);
     await apiService.addParticipant(jamId);
     
-    setUserData((previous) => ({
+    setUserData((previous) =>  ({
       ...previous,
       comingEvents: [...previous.comingEvents, data],
     }));
@@ -98,6 +98,7 @@ const EventPage:FunctionComponent<IProps>= ({userData,setUserData,isSignedUp}:IP
       };
     });
     }
+  
     
     
    
