@@ -1,4 +1,4 @@
-import { useEffect, useRef, FunctionComponent } from "react";
+import React, { useEffect, useRef, FunctionComponent} from "react";
 import "./social.css";
 import apiService from "../../apiService/ApiService";
 import {Message, Jam, User} from "../../apiService/APIResponseTypes";
@@ -15,8 +15,8 @@ interface IProps {
 }
 
 const  Social:FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isSignedUp, userData }:IProps) => {
-  const messagesEndRef = useRef(null);
-  const dummyDiv = useRef();
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const dummyDiv = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     dummyDiv.current?.scrollIntoView({ behavior: "smooth" });
@@ -24,25 +24,28 @@ const  Social:FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isS
 
   useEffect(() => {
     if (messagesEndRef) {
-      messagesEndRef.current.addEventListener("DOMNodeInserted", (event) => {
-        const { currentTarget: target } = event;
-        target.scroll({ top: target.scrollHeight, behavior: "smooth" });
+      messagesEndRef.current?.addEventListener("DOMNodeInserted", (event) => {
+        const { currentTarget: target } = event ;
+        if (target){
+          (target as HTMLDivElement).scroll({ top: (target as HTMLDivElement).scrollHeight, behavior: "smooth" });
+        }
       });
     }
     scrollToBottom();
   }, []);
 
-  function handleChange(e) {
+  function handleChange(e:React.ChangeEvent<HTMLTextAreaElement>): void {
     setMsg((previous) => ({
+      ...previous,
       name: userData.firstname,
-      message: e.target.value,
+      message: e.currentTarget.value,
 
     }));
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e:React.FormEvent<HTMLFormElement>):Promise<void> {
     e.preventDefault();
-    await apiService.postMessage(msg, jam._id);
+    if(jam._id) await apiService.postMessage(msg, jam._id);
     setMsg(initialState);
   }
 
@@ -62,8 +65,7 @@ const  Social:FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isS
           <form className="social-form" onSubmit={handleSubmit}>
             <div className="left-form">
               <textarea
-                required
-                type="text"
+                required            
                 placeholder="MESSAGE"
                 name="message"
                 value={msg.message}
