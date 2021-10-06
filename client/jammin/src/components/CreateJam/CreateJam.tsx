@@ -4,17 +4,18 @@ import apiService from "../../apiService/ApiService";
 import "./createjam.css";
 import { useHistory } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
+import { Jam } from "../../apiService/APIResponseTypes";
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-const initialState = {
+const initialState: Jam = {
   title: "",
   date: "",
   description: "",
   city: "",
-  cityCords: null,
+  cityCords: {lat: 0, lng:0},
   location: "",
-  locCords: null,
+  locCords: {lat: 0, lng:0},
   host: "",
   numOfParticipants: 1,
   languages: "",
@@ -28,10 +29,10 @@ function CreateJam() {
   
   const history = useHistory();
 
-  const libraries = ["places"];
+  const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: apiKey,
+    googleMapsApiKey: apiKey as string,
     libraries,
   });
 
@@ -50,7 +51,7 @@ function CreateJam() {
   async function handleSubmit(e) {
     e.preventDefault();
     const event = await apiService.postEvent(state); //make the function return the event, await that
-    const id = event._id;
+    const id = event?._id;
     setState(initialState);
     history.push(`/jams/${id}`); //path with id
   }
