@@ -53,7 +53,7 @@ const  Social:FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isS
     <div className="social-container">
       <div className="msg-container" ref={messagesEndRef}>
         {jam.messages.map((msg) => (
-          <div className="msg-indiv">
+          <div key={msg.name} className="msg-indiv">
             <p className="msg-name">{msg.name}</p>
             <p className="msg-message">{msg.message}</p>
           </div>

@@ -57,7 +57,7 @@ const Search:React.FunctionComponent<IProps> = ({ setCity, setLocation, searchJa
     borderRadius: "20px",
     color: "white",
     padding: "1rem",
-    textAlign: "center" as "center",
+    // textAlign: "center" as "center",
   };
 
   const containerStyle = {
@@ -91,6 +91,6 @@ const Search:React.FunctionComponent<IProps> = ({ setCity, setLocation, searchJa
       </ComboboxPopover>
     </Combobox>
   );
-}
+};
 
 export default Search;

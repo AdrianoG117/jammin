@@ -59,7 +59,7 @@ const EventPage:FunctionComponent<IProps>= ({userData,setUserData,isSignedUp}:IP
         setData(data[0]);
       }
     })
-    .finally(()=>{});
+    .catch((err=>{throw new Error(err);}));
   }, [msg, urlID]);
 
   const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];

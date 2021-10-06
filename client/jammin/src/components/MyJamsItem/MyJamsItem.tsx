@@ -22,7 +22,7 @@ const  MyJamsItem:FunctionComponent<IProps> = ({ eventData, userData, setUserDat
       jamId: jamId,
     };
   
-    await apiService.removeJam(body);
+    apiService.removeJam(body);
     await apiService.removeParticipant(jamId);
 
     //send back from post request
@@ -45,19 +45,20 @@ const  MyJamsItem:FunctionComponent<IProps> = ({ eventData, userData, setUserDat
         <h2>{eventData.city}</h2>
       </div>
       <div className="button-container">
-        <div onClick={() => history.push(`/jams/${eventData._id}`)}>
-          <button id="see-btn">See Event</button>
-        </div>
+          <button onClick={() => history.push(`/jams/${eventData._id? eventData._id : ""}`)} id="see-btn">See Event</button> 
       </div>
-      <div className="trash-container">
+      <div className="trash-container" 
+            role={"button"}
+            tabIndex={0} 
+            onClick={() => removeFromEvents(userData._id, eventData._id)}
+            onKeyDown={() => removeFromEvents(userData._id, eventData._id)}>
         <img
           src={Trash}
           alt=""
-          onClick={() => removeFromEvents(userData._id, eventData._id)}
         />
       </div>
     </div>
   );
-}
+};
 
 export default MyJamsItem;

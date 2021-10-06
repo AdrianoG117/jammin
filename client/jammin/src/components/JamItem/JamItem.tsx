@@ -10,10 +10,11 @@ type cords = { lat: number
 interface IProps{
   jam: Jam
  setHighEvent: React.Dispatch<React.SetStateAction< cords | null>> 
+ 
 }
 
 
-const JamItem:FunctionComponent<IProps> = ({ jam,setHighEvent }) => {
+const JamItem:FunctionComponent<IProps> = ({ jam, setHighEvent }) => {
   const history = useHistory();
   return (
     <div
@@ -35,7 +36,7 @@ const JamItem:FunctionComponent<IProps> = ({ jam,setHighEvent }) => {
         </div>
         <div className="see-event" >
             <button onClick={()=> history.push({
-              pathname: `/jams/${jam._id}`,
+              pathname: `/jams/${jam._id? jam._id : ""}`,
               state: {
                 jam:jam
               }
@@ -45,6 +46,6 @@ const JamItem:FunctionComponent<IProps> = ({ jam,setHighEvent }) => {
       </div>
     </div>
   );
-}
+};
 
 export default JamItem;

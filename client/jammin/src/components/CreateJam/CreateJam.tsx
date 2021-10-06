@@ -1,4 +1,5 @@
 import { useState } from "react";
+import * as React from "react";
 import Search from "../Search/Search";
 import apiService from "../../apiService/ApiService";
 import "./createjam.css";
@@ -7,7 +8,7 @@ import { useLoadScript } from "@react-google-maps/api";
 import { Jam } from "../../apiService/APIResponseTypes";
 import { inputstyle, inputcontainstyle } from "./CreateJamStyles";
 
-const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+const apiKey:string | undefined= process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 const initialState: Jam = {
   title: "",
@@ -24,6 +25,8 @@ const initialState: Jam = {
   comingEvent: true,
   messages: [],
 };
+
+type coords = {lat: number, lng: number};
 
 function CreateJam() {
   const [state, setState] = useState(initialState);
@@ -52,30 +55,36 @@ function CreateJam() {
   async function handleSubmit(e:React.FormEvent<HTMLFormElement>): Promise<void> {
     e.preventDefault();
     const event = await apiService.postEvent(state); //make the function return the event, await that
-    const id = event?._id;
+    if(event && event._id) {
+      const id: string = event._id;
     setState(initialState);
     history.push(`/jams/${id}`); //path with id
+    }
   }
 // We can remove this setCity function/input
 //setLocation is making fetch call that return the city location. data.results[0].formatted_address.
   function setCity(loc: string) {
+    if(typeof loc === "string" && apiKey){
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${apiKey}`
     )
       .then((res) => res.json())
       .then((data) => {
-        const coords = data.results[0].geometry.location;
-        console.log(data);
-        setState((previous) => ({
-          ...previous,
-          city: loc,
-          cityCords: coords,
-        }));
-      });
+        if(data){
+          const coords: coords = data.results[0].geometry.location;
+          setState((previous) => ({
+            ...previous,
+            city: loc,
+            cityCords: coords,
+          }));
+        }
+      })
+      .catch((err=>{throw new Error(err);}));
+      }
   }
-
   function setLocation(loc: string) {
     //add city info
+     if(typeof loc === "string" && apiKey){
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${loc}&key=${apiKey}`
     )
@@ -85,10 +94,11 @@ function CreateJam() {
         setState((previous) => ({
           ...previous,
           location: loc,
-          locCords: coords,
+          locCords: coords as coords,
         }));
       })
-      .catch();
+      .catch((err=>{throw new Error(err);}));
+    }
   }
 
   const placeHolders = {

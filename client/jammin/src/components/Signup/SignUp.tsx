@@ -31,7 +31,7 @@ const SignUp:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp }:I
       ...previous,
       [name]: value,
     }));
-  }
+  };
 
   // on submit adds the inital state object to the db
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -39,9 +39,9 @@ const SignUp:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp }:I
     const user = apiService.register(state)
     .then((user) => { 
       if (user) setUserData(user); setIsSignedUp(true);setState(initialState);})
-    .finally(() => [0])
+    .finally(() => [0]);
     history.push("/dashboard");
-  }
+  };
 
   return (
     <div className="signup-container">
@@ -87,6 +87,6 @@ const SignUp:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp }:I
       </form>
     </div>
   );
-}
+};
 
 export default SignUp;

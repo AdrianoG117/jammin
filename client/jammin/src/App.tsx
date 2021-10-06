@@ -1,6 +1,6 @@
 import Topbar from "./components/Topbar/Topbar";
 import FindJam from "./components/FindJam/FindJam";
-import CreateJam from "./components/CreateJam/CreateJam.jsx";
+import CreateJam from "./components/CreateJam/CreateJam";
 import Home from "./components/Home/Home";
 import EventPage from "./components/EventPage/EventPage";
 import SignUp from "./components/Signup/SignUp";
@@ -9,7 +9,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import "./App.css";
 import React, { useState, useEffect, SetStateAction } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Jam, User } from './apiService/APIResponseTypes';
+import { Jam, User } from "./apiService/APIResponseTypes";
 
 export const initialUserState: User = {
   firstname: "",
@@ -18,7 +18,7 @@ export const initialUserState: User = {
   password: "",
   pastEvents: [],
   comingEvents: [],
-}
+};
 
 const App:React.FunctionComponent = () => {
   const [jams, setJams] = useState<Jam[]>([]);
@@ -125,6 +125,6 @@ const App:React.FunctionComponent = () => {
       </div>
     </Router>
   );
-}
+};
 
 export default App;

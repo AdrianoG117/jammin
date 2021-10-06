@@ -44,6 +44,6 @@ const Dashboard:React.FunctionComponent<IProps> = ({ userData, setUserData }:IPr
       )}
     </div>
   );
-}
+};
 
 export default Dashboard;

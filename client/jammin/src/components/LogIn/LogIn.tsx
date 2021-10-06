@@ -30,16 +30,16 @@ const LogIn:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp }:IP
       ...previous,
       [name]: value,
     }));
-  }
+  };
 
    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const user = apiService.login(state)
     .then((user) => {
-      if (user) setUserData(user); setIsSignedUp(true); setState(initialState); history.push('/dashboard');
+      if (user) setUserData(user); setIsSignedUp(true); setState(initialState); history.push("/dashboard");
     }).finally(()=>[0]);
     
-  }
+  };
 
   return (
     <div className="login-container">
@@ -66,6 +66,6 @@ const LogIn:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp }:IP
       </form>
     </div>
   );
-}
+};
 
 export default LogIn;

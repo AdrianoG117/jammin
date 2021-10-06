@@ -44,23 +44,8 @@ interface IProps {
 
 const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, setSearchVal, center, setCenter, markers, setMarkers, hasSearch, setHasSearch, isSignedUp }:IProps): React.ReactElement => {
 
-  // const jams = props.jams;
-  // console.log(jams);
-  // const setJams = props.setJams;
-  // const searchVal = props.searchVal;
-  // const setSearchVal = props.setSearchVal;
-  // const center = props.center;
-  // const setCenter = props.setCenter;
-  // const markers = props.markers;
-  // const setMarkers = props.setMarkers;
-
-  // const hasSearch = props.hasSearch;
-  // const setHasSearch = props.setHasSearch;
-
-  // const isSignedUp = props.isSignedUp;
-
   const [selected, setSelected] = useState<coords | null>(null);
-  const [idRoute, setIdRoute] = useState<string | undefined>(undefined);
+  const [idRoute, setIdRoute] = useState<string>("");
   const [highEvent, setHighEvent] = useState<coords | null>(null);
 
   const findPlaceholder = "Enter your city";
@@ -71,7 +56,7 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
 
   function getCoords(input: Jam[] | void): coords[] | void {
     if (input) {
-      let result = [];
+      const result = [];
       for (let i = 0; i < input.length; i++) {
         result.push(input[i].locCords);
       }
@@ -79,23 +64,25 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
     }
   }
 
-  async function handleSubmit(e: any) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const result: void | Jam[] = await apiService.getJams({ city: searchVal });
     setHasSearch(true);
 
     if (result) setJams(result);
-    let eventsCoords = getCoords(result);
+    const eventsCoords = getCoords(result);
     if (eventsCoords) setMarkers(eventsCoords);
-
+     if(typeof searchVal === "string" && apiKey){
     fetch(
       `https://maps.googleapis.com/maps/api/geocode/json?address=${searchVal}&key=${apiKey}`
     )
       .then((res) => res.json())
       .then((data) => {
-        let coords = data.results[0].geometry.location;
+        const coords = data.results[0].geometry.location;
         setCenter(coords);
-      });
+      })
+      .catch(err => {throw new Error(err);});
+    }
   }
 
   function coordsToId(coords: coords) {
@@ -130,6 +117,7 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
                 <JamItem
                   jam={jam}
                   setHighEvent={setHighEvent}
+                  key={jam._id}
                 />
               ))
             : null}
@@ -144,13 +132,14 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
               >
                 {markers.map((marker) => (
                   <Marker
+                    key={marker.lat}
                     onClick={() => {
                       setSelected(marker);
                       const routeId = coordsToId({
                         lat: marker.lat,
                         lng: marker.lng,
                       });
-                      setIdRoute(routeId);
+                      if(routeId) setIdRoute(routeId);
                     }}
                     position={{ lat: marker.lat, lng: marker.lng + 0.0034 }}
                     icon={{
@@ -189,7 +178,7 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
         {jams?.length === 0 && hasSearch ? (
           <div className="msg-fail">
             <h1 id="search-fail">
-              OOPS it seems there is no jams coming up in this city 😅
+              OOPS! It seems there are no jams coming up in this city.
             </h1>
             <Link to="/createjam">
               <button id="btn-fail">Create a jam</button>
@@ -199,6 +188,6 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
       </div>
     </div>
   );
-}
+};
 
 export default FindJam;
