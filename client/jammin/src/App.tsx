@@ -54,7 +54,11 @@ const App:React.FunctionComponent = () => {
                 />
               )}
             />
-            <Route path="/createjam" exact render={CreateJam} />
+            <Route path="/createjam" exact render={(props)=>(
+              <CreateJam
+              
+              
+              />)} />
             <Route
               path="/findjam"
               exact

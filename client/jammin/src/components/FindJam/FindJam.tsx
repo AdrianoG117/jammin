@@ -28,7 +28,7 @@ interface coords {
   }
 
 interface IProps {
-  jams:Jam[] | void;
+  jams:Jam[];
   setJams: React.Dispatch<SetStateAction< Jam[] >>
   searchVal: string;
   // setSearch:
@@ -78,6 +78,7 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
     )
       .then((res) => res.json())
       .then((data) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         const coords = data.results[0].geometry.location;
         setCenter(coords);
       })

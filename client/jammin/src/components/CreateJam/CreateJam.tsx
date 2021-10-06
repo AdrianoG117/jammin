@@ -28,8 +28,10 @@ const initialState: Jam = {
 
 type coords = {lat: number, lng: number};
 
-function CreateJam() {
-  const [state, setState] = useState(initialState);
+
+
+const CreateJam:React.FunctionComponent = () => {
+  const [state, setState] = useState<Jam>(initialState);
   
   const history = useHistory();
 
@@ -40,8 +42,7 @@ function CreateJam() {
     libraries,
   });
 
-  if (loadError) return "Error loading maps";
-  if (!isLoaded) return "Loading Maps";
+  
 
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> ) {
@@ -71,6 +72,7 @@ function CreateJam() {
       .then((res) => res.json())
       .then((data) => {
         if(data){
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
           const coords: coords = data.results[0].geometry.location;
           setState((previous) => ({
             ...previous,
@@ -90,6 +92,7 @@ function CreateJam() {
     )
       .then((res) => res.json())
       .then((data) => {
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         const coords = data.results[0].geometry.location;
         setState((previous) => ({
           ...previous,
@@ -164,6 +167,6 @@ function CreateJam() {
       </form>
     </div>
   );
-}
+};
 
 export default CreateJam;

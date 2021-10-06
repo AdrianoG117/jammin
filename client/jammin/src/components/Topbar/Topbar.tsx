@@ -16,23 +16,24 @@ const Topbar:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp, is
   return (
     <div className="nav-container">
       <div className="home-tag" onClick={() => history.push("/")} 
-      role={"button"}
-      tabIndex={0}
-      onKeyDown={() => history.push("/")}
+        role={"button"}
+        tabIndex={0}
+        onKeyDown={() => history.push("/")}
       >
         <h2>Home</h2>
       </div>
-      <div className="menu-tag" onClick={() => history.push("/dashboard")}
-      role={"button"}
-      tabIndex={0}
-      onKeyDown={() => history.push("/dashboard")}
+      <div className="menu-tag" 
       >
-        <li>Create Jam</li>
+        <li onClick={() => history.push("/createjam")}
+        role={"presentation"}
+        // tabIndex={0}
+        onKeyDown={() => history.push("/createjam")}
+        >Create Jam</li>
       </div>
-      <div className="menu-tag" onClick={() => history.push("/dashboard")}
+      <div className="menu-tag" onClick={() => history.push("/findjam")}
       role={"button"}
       tabIndex={0}
-      onKeyDown={() => history.push("/dashboard")}
+      onKeyDown={() => history.push("/findjam")}
       >
         <li>Find Jam</li>
       </div>
@@ -68,8 +69,8 @@ const Topbar:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp, is
             Login
           </li>
           <li className="nav-el" onClick={() => history.push("/signup")}
-          role={"presentation"}
-          onKeyDown={() => history.push("/signup")}>
+            role={"presentation"}
+            onKeyDown={() => history.push("/signup")}>
             Sign up
           </li>
         </ul>
