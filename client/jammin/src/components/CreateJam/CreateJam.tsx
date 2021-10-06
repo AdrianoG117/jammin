@@ -5,6 +5,7 @@ import "./createjam.css";
 import { useHistory } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
 import { Jam } from "../../apiService/APIResponseTypes";
+import { inputstyle, inputcontainstyle } from "./CreateJamStyles";
 
 const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
@@ -93,26 +94,6 @@ function CreateJam() {
   const placeHolders = {
     city: "YOUR CITY",
     location: "JAM LOCATION",
-  };
-
-  const inputstyle = {
-    backgroundColor: "transparent",
-    width: "100%",
-    display: "flex",
-    justifyContent: "center",
-    margin: "1rem",
-    height: "14%",
-  };
-
-  const inputcontainstyle = {
-    backgroundColor: "rgba(0, 0, 0, 0.7)",
-    color: "white",
-    height: "110%",
-    width: "60%",
-    margin: "0 auto",
-    borderRadius: "20px",
-    fontSize: "1.2rem",
-    padding: "0.4rem",
   };
 
   return (
