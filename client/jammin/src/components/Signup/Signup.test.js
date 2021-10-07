@@ -1,8 +1,11 @@
 import { render, screen } from "@testing-library/react";
-import Signup from "./SignUp";
+import SignUp from "./SignUp";
 import userEvent from "@testing-library/user-event";
 import apiService from "../../apiService/ApiService";
+<<<<<<< HEAD
 import { useHistory } from "react-router";
+=======
+>>>>>>> dev_TS_refactor
 
 const mockProps = {
     firstname: "front test",
@@ -13,17 +16,17 @@ const mockProps = {
     comingEvents: [],
   };
 
-describe("Signup component", ()=> {
+describe("SignUp component", ()=> {
   
   test("should match the snapshot", () => {
-    const {container} = render(<Signup
+    const {container} = render(<SignUp
                   setUserData={()=>{}}
                   setIsSignedUp={()=>{}} />);
     expect(container.firstChild).toMatchSnapshot();
   });
   
   test("Should render the headings", () => {
-    render (<Signup
+    render (<SignUp
                   setUserData={()=>{}}
                   setIsSignedUp={()=>{}} />);
     //title
@@ -42,7 +45,7 @@ describe("Signup component", ()=> {
     const spy = jest.spyOn(apiService, "register");
     
 
-    render (<Signup 
+    render (<SignUp 
                   setUserData={setUserData}
                   setIsSignedUp={()=>{}}
      />);

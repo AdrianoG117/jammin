@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Social component should match the snapshot 1`] = `
+<div
+  class="social-container"
+>
+  <div
+    class="msg-container"
+  >
+    <div />
+  </div>
+  <div
+    class="form-container"
+  >
+    <div
+      class="social-err"
+    >
+      <h2>
+        Log in to use the chat !
+      </h2>
+    </div>
+  </div>
+</div>
+`;

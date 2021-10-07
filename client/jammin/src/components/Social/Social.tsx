@@ -19,6 +19,7 @@ const  Social:FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isS
   const dummyDiv = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
+    if (dummyDiv)
     dummyDiv.current?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -52,12 +53,13 @@ const  Social:FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isS
   return (
     <div className="social-container">
       <div className="msg-container" ref={messagesEndRef}>
-        {jam.messages.map((msg) => (
+        {jam.messages ?
+          jam.messages.map((msg) => (
           <div key={msg.name} className="msg-indiv">
             <p className="msg-name">{msg.name}</p>
             <p className="msg-message">{msg.message}</p>
           </div>
-        ))}
+        )) : jam.messages = []}
         <div ref={dummyDiv}></div>
       </div>
       <div className="form-container">

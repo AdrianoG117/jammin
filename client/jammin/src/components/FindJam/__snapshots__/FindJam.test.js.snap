@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FindJam component should match the snapshot 1`] = `
+<div
+  class="findJam-main"
+>
+  <form
+    class="find-form"
+  >
+    <div
+      data-reach-combobox=""
+      data-state="idle"
+      style="height: 50%; display: flex; align-items: center; justify-content: center;"
+    >
+      <input
+        aria-autocomplete="both"
+        aria-controls="listbox--1"
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="demo"
+        data-reach-combobox-input=""
+        data-state="idle"
+        disabled=""
+        placeholder="Enter your city"
+        required=""
+        role="combobox"
+        style="width: 100%; height: 80%; background-color: rgba(0, 0, 0, 0.7); border-radius: 20px; color: white; padding: 1rem;"
+        value=""
+      />
+    </div>
+    <button
+      class="find-btn"
+    >
+      Search
+    </button>
+  </form>
+  <div
+    class="jams-list-container"
+  >
+    <div
+      class="jams-list"
+    />
+    <div
+      class="maps-container"
+    >
+      <div
+        class="maps"
+      />
+    </div>
+  </div>
+  <div
+    class="error-container"
+  />
+</div>
+`;
