@@ -3,7 +3,7 @@ import {render, screen} from "@testing-library/react";
 import Login from "./LogIn";
 
 
-describe("Signup component", ()=> {
+describe("Login component", ()=> {
   
   test("should match the snapshot", () => {
     const {container} = render(<Login
