@@ -4,12 +4,15 @@ import Search from "../Search/Search";
 import apiService from "../../apiService/ApiService";
 import "./createjam.css";
 import { useHistory } from "react-router-dom";
-import { useLoadScript } from "@react-google-maps/api";
+import { useLoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 import { Jam } from "../../apiService/APIResponseTypes";
 import { inputstyle, inputcontainstyle } from "./CreateJamStyles";
 
-const apiKey:string | undefined= process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
+const apiKey:string = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "";
+  const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
+
+  
 const initialState: Jam = {
   title: "",
   date: "",
@@ -35,11 +38,12 @@ const CreateJam:React.FunctionComponent = () => {
   
   const history = useHistory();
 
-  const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: apiKey as string,
+    googleMapsApiKey: apiKey,
     libraries,
+     
+
   });
 
   

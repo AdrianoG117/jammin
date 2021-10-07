@@ -13,9 +13,11 @@ import {
 } from "@react-google-maps/api";
 import { Link } from "react-router-dom";
 
-const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
-const libraries = ["places"];
+  const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
+
+const apiKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY || "";
+
 const mapContainerStyle = {
   width: "100%",
   height: "60vh",
@@ -98,10 +100,9 @@ const FindJam:React.FunctionComponent<IProps> = ({ jams, setJams, searchVal, set
     }
   }
 
-  const libraries: ("places" | "drawing" | "geometry" | "localContext" | "visualization")[] = ["places"];
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: apiKey as string,
+    googleMapsApiKey: apiKey,
     libraries,
   });
 

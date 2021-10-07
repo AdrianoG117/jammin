@@ -40,7 +40,6 @@ const  Social:FunctionComponent<IProps> = ({ jam, msg, setMsg, initialState, isS
       ...previous,
       name: userData.firstname,
       message: e.currentTarget.value,
-
     }));
   }
 

@@ -2,10 +2,6 @@ import { render, screen } from "@testing-library/react";
 import SignUp from "./SignUp";
 import userEvent from "@testing-library/user-event";
 import apiService from "../../apiService/ApiService";
-<<<<<<< HEAD
-import { useHistory } from "react-router";
-=======
->>>>>>> dev_TS_refactor
 
 const mockProps = {
     firstname: "front test",
