@@ -40,7 +40,7 @@ const SignUp:React.FunctionComponent<IProps> = ({ setUserData, setIsSignedUp }:I
     .then((user) => { 
       if (user) setUserData(user); setIsSignedUp(true);setState(initialState);})
     .finally(() => [0]);
-    history.push("/dashboard");
+    if (history) history.push("/dashboard");
   };
 
   return (
